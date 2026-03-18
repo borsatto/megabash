@@ -2,10 +2,20 @@ FROM fedora:43
 LABEL maintainer="borsatto at mail dot com"
 
 USER root
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo 'root:megabash123!' | chpasswd
+
+RUN dnf install -y wget && \
+    wget https://rpm.releases.hashicorp.com/fedora/hashicorp.repo -O /etc/yum.repos.d/hashicorp.repo && \
+    cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key
+EOF
 
 RUN dnf update -y && \
     dnf copr enable -y alternateved/eza && \
@@ -14,6 +24,9 @@ RUN dnf update -y && \
         iputils bind-utils busybox mtr nmap-ncat iperf3 \
         jq yq fzf eza ansible \
         htop btop \
+        terraform \
+        kubectl \
+        helm \
         https://github.com/PowerShell/PowerShell/releases/download/v7.5.5/powershell-7.5.5-1.rh.x86_64.rpm && \
     dnf clean all && \
     pwsh -Command "Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser" && \
@@ -23,8 +36,3 @@ RUN dnf update -y && \
     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && \
     unzip Hack.zip -d /usr/local/share/fonts && \
     rm Hack.zip
-
-COPY starship.toml /root/.config/
-COPY Microsoft.PowerShell_profile.ps1 /root/.config/powershell/
-COPY tokyo-night.toml /root/.config/powershell/
-COPY .bashrc /root/
