@@ -10,7 +10,7 @@ The primary goal is to provide "ready-to-go" environments that include essential
 A robust, Fedora-powered container designed for heavy-duty DevOps work. It comes pre-loaded with a massive suite of cloud and infrastructure tools.
 
 **Key Features:**
-- **Base OS:** `fedora:43`
+- **Base OS:** `fedora:44`
 - **Core CLI Tools:** 
   - Infrastructure as Code: `terraform`, `helm`, `kubectl`, `ansible`.
   - Networking & System: `nmap`, `iperf3`, `mtr`, `bind-utils`, `socat`, `dig`.
