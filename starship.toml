@@ -1,92 +1,320 @@
-# ~/.config/starship.toml
+# ============================================================
+#  starship.toml — cyberdream · Windows PowerShell · MAXED
+# ============================================================
 
-# Inserts a blank line between shell prompts
-add_newline = true
+format = """
+[╭─────](fg:#ffffff)\
+$username\
+[   📁 ](fg:#ffffff)\
+$directory\
+[  ](fg:#ffffff)\
+$time\
+\n[│](fg:#ffffff)  \
+[Branch:](dimmed) \
+$git_branch\
+[  ](fg:#ffffff)\
+[Status:](dimmed) \
+$git_status\
+[  ](fg:#ffffff)\
+[Commit:](dimmed) \
+$git_commit\
+[  ](fg:#ffffff)\
+[State:](dimmed) \
+$git_state\
+[  ](fg:#ffffff)\
+[Metrics:](dimmed) \
+$git_metrics\
+\n[│](fg:#ffffff)  \
+[ENV: ](dimmed)\
+$env_var\
+[  ](fg:#ffffff)  \
+[TOOLS: ](dimmed)\
+$nodejs\
+$python\
+$conda\
+$rust\
+$golang\
+$java\
+$kotlin\
+$lua\
+$ruby\
+$php\
+$docker_context\
+$terraform\
+$helm\
+$kubernetes\
+\n[│](fg:#ffffff)  \
+$cmd_duration\
+[   ](fg:#ffffff)\
+$jobs\
+[   ](fg:#ffffff)\
+$shlvl\
+[   ](fg:#ffffff)\
+$shell\
+[\n╰─_](fg:#ffffff)\
+$character\
+"""
 
-# Change the default prompt format
-format = """\
-[╭╴](238)$env_var\
-$all[╰─](238)$character"""
+right_format = ""
+palette      = 'cyberdream'
 
-# Don't display container module
-[container]
-disabled = true
+[palettes.cyberdream]
+text         = '#ff9318'
+overlay1     = '#2a3555'
+color_blue   = '#4d9fff'
+color_aqua   = '#00eaff'
+color_green  = '#00ff15'
+color_orange = '#ff8c00'
+color_red    = '#ff3b25'
+color_yellow = '#eaff00'
+color_pink   = '#ff2c84'
+color_purple = '#b040ff'
+color_violet = '#a78bfa'
+red          = '#ff3b25'
 
-# Change the default prompt characters
-[character]
-success_symbol = "[](238)"
-error_symbol = "[](238)"
+# ============================================================
+#  Row 1 — Identity
+# ============================================================
 
-# Shows an icon that should be included by zshrc script based on the distribution or os
-[env_var.STARSHIP_DISTRO]
-format = '[$env_value](bold white)'  # removed space between distro and rest for pwsh
-variable = "STARSHIP_DISTRO"
-disabled = false
-
-# Shows the username
 [username]
-style_user = "white bold"
-style_root = "black bold"
-format = "[$user]($style) "
-disabled = false
 show_always = true
+style_user  = "fg:#ff9318 bold underline"
+style_root  = "fg:#ff3b25 bold underline"
+format      = "[$user]($style)"
+
 
 [directory]
-truncation_length = 3
-truncation_symbol = "…/"
-home_symbol = " ~"
-read_only_style = "197"
-read_only = "  "
-format = "at [$path]($style)[$read_only]($read_only_style) "
+style             = "fg:#ffffff bold"
+format            = "[$path ]($style)"
+truncation_length = 100
+truncation_symbol = ""
+use_os_path_sep   = false
+truncate_to_repo  = false
+use_logical_path  = true
+
+[directory.substitutions]
+"Documents" = "Docs"
+"Downloads" = "DL"
+"Desktop"   = "Desk"
+"Projects"  = "Proj"
+
+# ============================================================
+#  Row 2 — Git full details
+# ============================================================
 
 [git_branch]
-symbol = " "
-format = "on [$symbol$branch]($style) "
-truncation_length = 4
-truncation_symbol = "…/"
-style = "bold green"
+symbol   = "⎇"
+style    = "fg:#eaff00 bold"
+format   = "[$symbol $branch(:$remote_branch) ]($style)"
 
 [git_status]
-format = '[\($all_status$ahead_behind\)]($style) '
-style = "bold green"
-conflicted = "🏳"
-up_to_date = " "
-untracked = " "
-ahead = "⇡${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-behind = "⇣${count}"
-stashed = " "
-modified = " "
-staged = '[++\($count\)](green)'
-renamed = "襁 "
-deleted = " "
+style      = "fg:#ff8c00"
+format     = "[$all_status$ahead_behind ]($style)"
+ahead      = "^$count"
+behind     = "v$count"
+diverged   = "^${ahead_count}v${behind_count}"
+untracked  = "?$count"
+stashed    = "S$count"
+modified   = "!$count"
+staged     = "+$count"
+deleted    = "x$count"
+conflicted = "=$count"
+renamed    = "r$count"
 
-[terraform]
-format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
+[git_commit]
+only_detached      = false
+format             = "[@$hash$tag ](fg:#ff2c84)"
+commit_hash_length = 6
+tag_symbol         = " #"
+tag_disabled       = false
 
-[vagrant]
-format = "via [ vagrant $version]($style) "
+[git_state]
+style           = "fg:#ff3b25 bold"
+format          = "[$state($progress_current/$progress_total) ]($style)"
+rebase          = "REBASE"
+merge           = "MERGE"
+revert          = "REVERT"
+cherry_pick     = "CHERRY"
+bisect          = "BISECT"
+am              = "AM"
+am_or_rebase    = "AM/REBASE"
 
-[docker_context]
-format = "via [ $context](bold blue) "
+[git_metrics]
+disabled              = false
+added_style           = "fg:#00ff15 bold"
+deleted_style         = "fg:#ff3b25 bold"
+format                = "[+$added ]($added_style)[-$deleted ]($deleted_style)"
+only_nonzero_diffs    = true
 
-[helm]
-format = "via [ $version](bold purple) "
+# ============================================================
+#  Row 3 — Shell info
+# ============================================================
 
-[python]
-symbol = " "
-python_binary = "python3"
+[cmd_duration]
+min_time          = 500
+style             = "fg:#c084fc bold"
+format            = "[took $duration ]($style)"
+show_milliseconds = true
+min_time_to_notify = 10000
+
+[jobs]
+symbol    = "~"
+style     = "fg:#00eaff bold"
+format    = "[$symbol$number jobs ]($style)"
+threshold = 1
+
+[shlvl]
+disabled  = false
+style     = "fg:#ff8c00 bold"
+format    = "[SHLVL:$shlvl ]($style)"
+threshold = 2
+repeat    = false
+
+
+# ============================================================
+#  Row 4 — System stats
+# ============================================================
+
+[memory_usage]
+disabled  = false
+threshold = 0
+style     = "fg:#a78bfa bold"
+format    = "[$ram_pct ($ram/$swap_pct swap) ]($style)"
+
+[battery]
+full_symbol        = "FULL"
+charging_symbol    = "CHG"
+discharging_symbol = "BAT"
+unknown_symbol     = "BAT?"
+empty_symbol       = "LOW!"
+format             = "[$symbol $percentage ]($style)"
+
+[[battery.display]]
+threshold = 15
+style     = "fg:#ff3b25 bold"
+
+[[battery.display]]
+threshold = 50
+style     = "fg:#ff8c00 bold"
+
+[[battery.display]]
+threshold = 100
+style     = "fg:#00ff15 bold"
+
+[time]
+disabled    = false
+time_format = "%d %b %Y  %H:%M:%S"
+style       = "fg:#00eaff bold"
+format      = "[$time ]($style)"
+
+
+# ============================================================
+#  Row 5 — Env vars + package + build tools
+# ============================================================
+
+[env_var.VIRTUAL_ENV]
+variable = "VIRTUAL_ENV"
+style    = "fg:#ff2c84"
+format   = "[$env_value ]($style)"
+default  = ""
+
+[package]
+disabled      = false
+style         = "fg:#ff8c00 bold"
+format        = "[$symbol$version ]($style)"
+symbol        = "pkg:"
+version_format = "v${raw}"
+
+[c]
+disabled = false
+style    = "fg:#4d9fff bold"
+format   = "[$symbol$version ]($style)"
+symbol   = "C:"
+
+[cmake]
+disabled = false
+style    = "fg:#4d9fff"
+format   = "[$symbol$version ]($style)"
+symbol   = "cmake:"
+
+# ============================================================
+#  Row 6 — Toolchain (auto-hides per directory)
+# ============================================================
 
 [nodejs]
-format = "via [ $version](bold green) "
-disabled = true
+symbol = "Node"
+format = "[$symbol:$version ](fg:#00ff15)"
+
+[python]
+symbol        = "Py"
+format        = "[$symbol:$version( ($virtualenv)) ](fg:#eaff00)"
+python_binary = ["python3", "python"]
+
+[conda]
+symbol      = "conda"
+format      = "[$symbol:$environment ](fg:#00e010)"
+ignore_base = true
+
+[rust]
+symbol = "Rs"
+format = "[$symbol:$version ](fg:#ff8c00)"
+
+[golang]
+symbol = "Go"
+format = "[$symbol:$version ](fg:#00eaff)"
+
+[java]
+symbol = "Java"
+format = "[$symbol:$version ](fg:#ff2c84)"
+
+[kotlin]
+disabled = false
+symbol   = "Kt"
+format   = "[$symbol:$version ](fg:#b040ff)"
+
+[lua]
+disabled = false
+symbol   = "Lua"
+format   = "[$symbol:$version ](fg:#4d9fff)"
 
 [ruby]
-format = "via [ $version]($style) "
+disabled = false
+symbol   = "Rb"
+format   = "[$symbol:$version ](fg:#ff3b25)"
+
+[php]
+disabled = false
+symbol   = "PHP"
+format   = "[$symbol:$version ](fg:#b040ff)"
+
+[docker_context]
+symbol          = "Docker"
+format          = "[$symbol:$context ](fg:#3a8fff)"
+only_with_files = false
+
+[terraform]
+disabled = false
+symbol   = "TF"
+format   = "[$symbol:$workspace ](fg:#b040ff)"
+
+[helm]
+disabled = false
+symbol   = "Helm"
+format   = "[$symbol:$version ](fg:#4d9fff)"
 
 [kubernetes]
-format = 'on [ $context\($namespace\)](bold purple) '
 disabled = false
-[kubernetes.context_aliases]
-"clcreative-k8s-staging" = "cl-k8s-staging"
-"clcreative-k8s-production" = "cl-k8s-prod"
+style    = "fg:#4d9fff bold"
+format   = "[$symbol$context(::$namespace) ]($style)"
+symbol   = "K8s:"
+
+
+# ============================================================
+#  Prompt character
+# ============================================================
+
+[character]
+format         = "$symbol "
+success_symbol = "[➤ ](bold fg:#ffffff)"
+error_symbol   = "[➤ ](bold fg:#ff3b25)"
+vimcmd_symbol  = "[N ](bold fg:#00ff15)"
