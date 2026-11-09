@@ -37,7 +37,22 @@ docker build -t megabash .
 To run the container interactively:
 
 ```bash
-docker run -it --rm megabash /bin/bash
+docker run --rm -it \
+  --net=host \
+  -v "$HOME/.kube:/root/.kube:ro,z" \
+  -v "$HOME/.ssh:/root/.ssh:ro,z" \
+  -v "$(pwd):/workspace:z" \
+  -w /workspace \
+  aborsatto/megabash:latest /bin/bash
+```
+
+## Hint 
+
+To avoid typing the long `docker run` command for every session, add an alias to your `~/.bashrc` (or `~/.zshrc`):
+
+```bash
+# DevOps Toolbox - Megabash Alias
+alias megabash='docker run --rm -it --net=host -v "$HOME/.kube:/root/.kube:ro" -v "$HOME/.ssh:/root/.ssh:ro" -v "$(pwd):/workspace" -w /workspace aborsatto/megabash:latest /bin/bash'
 ```
 
 ## 🎨 Customization
