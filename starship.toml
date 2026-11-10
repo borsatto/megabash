@@ -4,7 +4,7 @@
 
 format = """
 [╭───── ](fg:#ffffff)\
-$username\
+ $username\
 [   ❯ ](fg:#ffffff)\
 $directory\
 [  ](fg:#ffffff)\
