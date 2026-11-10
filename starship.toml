@@ -3,9 +3,9 @@
 # ============================================================
 
 format = """
-[╭─────](fg:#ffffff)\
+[╭───── ](fg:#ffffff)\
 $username\
-[   📁 ](fg:#ffffff)\
+[   ❯ ](fg:#ffffff)\
 $directory\
 [  ](fg:#ffffff)\
 $time\

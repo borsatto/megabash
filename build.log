@@ -1,0 +1,745 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.24kB done
+#1 DONE 0.0s
+
+#2 [auth] library/fedora:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/fedora:43
+#3 DONE 0.8s
+
+#4 [1/6] FROM docker.io/library/fedora:43@sha256:762d73ba1c455232b0272c5d445a34f36c4b9f421cbc05ce8102552325b6a222
+#4 resolve docker.io/library/fedora:43@sha256:762d73ba1c455232b0272c5d445a34f36c4b9f421cbc05ce8102552325b6a222 0.0s done
+#4 CACHED
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.1s
+
+#6 [2/6] RUN echo 'root:megabash123!' | chpasswd &&     printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo &&     dnf install -y wget dnf-plugins-core &&     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo &&     dnf copr enable -y alternateved/eza &&     dnf update -y &&     dnf install -y         ncurses curl libicu gnupg2 openssh-clients unzip git vim         iputils bind-utils busybox mtr nmap-ncat iperf3         jq yq fzf eza ansible         htop btop         terraform         kubectl         helm         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm &&     dnf clean all &&     rm -rf /var/cache/dnf &&     pwsh -Command "Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser" &&     pwsh -Command "Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force" &&     pwsh -Command "Remove-Item -Path $env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path $env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue" &&     wget -qO- https://starship.rs/install.sh | sh -s -- -y &&     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack &&     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip &&     unzip Hack.zip -d /usr/share/fonts/hack &&     rm Hack.zip
+#6 0.361 Updating and loading repositories:
+#6 1.230  Fedora 43 openh264 (From Cisco) - x86_ 100% |   6.8 KiB/s |   5.8 KiB |  00m01s
+#6 1.333  Kubernetes                             100% |  23.0 KiB/s |  12.5 KiB |  00m01s
+#6 2.980  Fedora 43 - x86_64 - Updates           100% |   7.6 MiB/s |  17.5 MiB |  00m02s
+#6 3.638  Fedora 43 - x86_64                     100% |  11.5 MiB/s |  35.3 MiB |  00m03s
+#6 9.587 Repositories loaded.
+#6 11.69 Total size of inbound packages is 17 MiB. Need to download 17 MiB.
+#6 11.69 After this operation, 63 MiB extra will be used (install 63 MiB, remove 0 B).
+#6 11.69 Package                     Arch   Version              Repository      Size
+#6 11.69 Installing:
+#6 11.69  dnf-plugins-core           noarch 4.10.1-6.fc43        fedora      22.8 KiB
+#6 11.69  wget2-wget                 x86_64 2.2.1-1.fc43         updates     42.0   B
+#6 11.69 Installing dependencies:
+#6 11.69  dbus-libs                  x86_64 1:1.16.2-1.fc43      updates    345.4 KiB
+#6 11.69  dnf-data                   noarch 4.24.0-1.fc43        updates     39.8 KiB
+#6 11.69  dns-root-data              noarch 2026260100-2.fc43    updates     10.9 KiB
+#6 11.69  expat                      x86_64 2.8.1-1.fc43         updates    315.4 KiB
+#6 11.69  gnutls-dane                x86_64 3.8.13-1.fc43        updates    149.9 KiB
+#6 11.69  gpgme                      x86_64 1.24.3-6.fc43        fedora     587.9 KiB
+#6 11.69  hiredis                    x86_64 1.2.0-7.fc43         fedora     105.9 KiB
+#6 11.69  libcomps                   x86_64 0.1.23-1.fc43        fedora     205.3 KiB
+#6 11.69  libdnf                     x86_64 0.75.0-1.fc43        updates      2.2 MiB
+#6 11.69  mpdecimal                  x86_64 4.0.1-2.fc43         fedora     217.2 KiB
+#6 11.69  ngtcp2                     x86_64 1.22.1-1.fc43        updates    322.3 KiB
+#6 11.69  ngtcp2-crypto-ossl         x86_64 1.22.1-1.fc43        updates     51.7 KiB
+#6 11.69  protobuf-c                 x86_64 1.5.2-1.fc43         updates     49.8 KiB
+#6 11.69  python-pip-wheel           noarch 25.1.1-18.fc43       fedora       1.2 MiB
+#6 11.69  python3                    x86_64 3.14.5-1.fc43        updates     28.7 KiB
+#6 11.69  python3-dateutil           noarch 1:2.9.0.post0-6.fc43 fedora     877.5 KiB
+#6 11.69  python3-dbus               x86_64 1.4.0-7.fc43         fedora     532.9 KiB
+#6 11.69  python3-distro             noarch 1.9.0-10.fc43        fedora     210.2 KiB
+#6 11.69  python3-dnf                noarch 4.24.0-1.fc43        updates      2.7 MiB
+#6 11.69  python3-dnf-plugins-core   noarch 4.10.1-6.fc43        fedora       1.2 MiB
+#6 11.69  python3-hawkey             x86_64 0.75.0-1.fc43        updates    295.6 KiB
+#6 11.69  python3-libcomps           x86_64 0.1.23-1.fc43        fedora     139.4 KiB
+#6 11.69  python3-libdnf             x86_64 0.75.0-1.fc43        updates      3.7 MiB
+#6 11.69  python3-libs               x86_64 3.14.5-1.fc43        updates     43.2 MiB
+#6 11.69  python3-rpm                x86_64 6.0.1-1.fc43         updates    179.3 KiB
+#6 11.69  python3-six                noarch 1.17.0-7.fc43        fedora     118.0 KiB
+#6 11.69  python3-systemd            x86_64 235-17.fc43          fedora     347.4 KiB
+#6 11.69  unbound-libs               x86_64 1.25.1-1.fc43        updates      1.5 MiB
+#6 11.69  wget2                      x86_64 2.2.1-1.fc43         updates      1.1 MiB
+#6 11.69  wget2-libs                 x86_64 2.2.1-1.fc43         updates    377.6 KiB
+#6 11.69 Installing weak dependencies:
+#6 11.69  python-unversioned-command noarch 3.14.5-1.fc43        updates     23.0   B
+#6 11.69  python3-unbound            x86_64 1.25.1-1.fc43        updates    516.3 KiB
+#6 11.69  unbound-anchor             x86_64 1.25.1-1.fc43        updates     53.6 KiB
+#6 11.69 
+#6 11.69 Transaction Summary:
+#6 11.69  Installing:        35 packages
+#6 11.69 
+#6 11.81 [ 1/35] dnf-plugins-core-0:4.10.1-6.fc4 100% | 322.2 KiB/s |  37.7 KiB |  00m00s
+#6 11.86 [ 2/35] python3-dnf-plugins-core-0:4.10 100% |   1.9 MiB/s | 314.6 KiB |  00m00s
+#6 11.87 [ 3/35] python3-dbus-0:1.4.0-7.fc43.x86 100% |   2.5 MiB/s | 161.8 KiB |  00m00s
+#6 11.89 [ 4/35] python3-dateutil-1:2.9.0.post0- 100% |   1.7 MiB/s | 344.3 KiB |  00m00s
+#6 11.89 [ 5/35] python3-distro-0:1.9.0-10.fc43. 100% |   1.4 MiB/s |  47.9 KiB |  00m00s
+#6 11.91 [ 6/35] python3-six-0:1.17.0-7.fc43.noa 100% |   1.9 MiB/s |  41.8 KiB |  00m00s
+#6 11.92 [ 7/35] python3-systemd-0:235-17.fc43.x 100% |   2.5 MiB/s | 108.2 KiB |  00m00s
+#6 12.03 [ 8/35] wget2-wget-0:2.2.1-1.fc43.x86_6 100% |  70.7 KiB/s |   9.4 KiB |  00m00s
+#6 12.08 [ 9/35] gpgme-0:1.24.3-6.fc43.x86_64    100% |   4.4 MiB/s | 218.5 KiB |  00m00s
+#6 12.16 [10/35] python3-0:3.14.5-1.fc43.x86_64  100% | 349.5 KiB/s |  28.7 KiB |  00m00s
+#6 12.17 [11/35] wget2-libs-0:2.2.1-1.fc43.x86_6 100% | 607.3 KiB/s | 153.0 KiB |  00m00s
+#6 12.20 [12/35] wget2-0:2.2.1-1.fc43.x86_64     100% |   1.0 MiB/s | 295.8 KiB |  00m00s
+#6 12.22 [13/35] expat-0:2.8.1-1.fc43.x86_64     100% |   2.4 MiB/s | 124.5 KiB |  00m00s
+#6 12.25 [14/35] mpdecimal-0:4.0.1-2.fc43.x86_64 100% |   2.0 MiB/s |  97.1 KiB |  00m00s
+#6 12.32 [15/35] python-pip-wheel-0:25.1.1-18.fc 100% |  12.1 MiB/s |   1.2 MiB |  00m00s
+#6 12.35 [16/35] python3-dnf-0:4.24.0-1.fc43.noa 100% |   6.6 MiB/s | 639.4 KiB |  00m00s
+#6 12.36 [17/35] dnf-data-0:4.24.0-1.fc43.noarch 100% | 886.0 KiB/s |  38.1 KiB |  00m00s
+#6 12.40 [18/35] python3-hawkey-0:0.75.0-1.fc43. 100% |   1.7 MiB/s | 102.7 KiB |  00m00s
+#6 12.43 [19/35] python3-libcomps-0:0.1.23-1.fc4 100% |   2.0 MiB/s |  48.2 KiB |  00m00s
+#6 12.50 [20/35] libdnf-0:0.75.0-1.fc43.x86_64   100% |  10.6 MiB/s | 727.8 KiB |  00m00s
+#6 12.51 [21/35] python3-libdnf-0:0.75.0-1.fc43. 100% |   5.7 MiB/s | 844.7 KiB |  00m00s
+#6 12.54 [22/35] libcomps-0:0.1.23-1.fc43.x86_64 100% |   1.7 MiB/s |  77.0 KiB |  00m00s
+#6 12.56 [23/35] dbus-libs-1:1.16.2-1.fc43.x86_6 100% |   3.1 MiB/s | 147.9 KiB |  00m00s
+#6 12.59 [24/35] gnutls-dane-0:3.8.13-1.fc43.x86 100% |   1.2 MiB/s |  54.2 KiB |  00m00s
+#6 12.61 [25/35] python3-rpm-0:6.0.1-1.fc43.x86_ 100% |   1.4 MiB/s |  70.1 KiB |  00m00s
+#6 12.65 [26/35] unbound-libs-0:1.25.1-1.fc43.x8 100% |   9.8 MiB/s | 579.2 KiB |  00m00s
+#6 12.65 [27/35] dns-root-data-0:2026260100-2.fc 100% | 327.0 KiB/s |  14.4 KiB |  00m00s
+#6 12.73 [28/35] python3-libs-0:3.14.5-1.fc43.x8 100% |  17.2 MiB/s |   9.9 MiB |  00m01s
+#6 12.74 [29/35] ngtcp2-crypto-ossl-0:1.22.1-1.f 100% | 309.5 KiB/s |  27.2 KiB |  00m00s
+#6 12.74 [30/35] hiredis-0:1.2.0-7.fc43.x86_64   100% | 571.6 KiB/s |  50.3 KiB |  00m00s
+#6 12.78 [31/35] ngtcp2-0:1.22.1-1.fc43.x86_64   100% |   3.0 MiB/s | 149.6 KiB |  00m00s
+#6 12.79 [32/35] protobuf-c-0:1.5.2-1.fc43.x86_6 100% | 617.3 KiB/s |  32.7 KiB |  00m00s
+#6 12.79 [33/35] python-unversioned-command-0:3. 100% | 199.4 KiB/s |  10.8 KiB |  00m00s
+#6 12.83 [34/35] python3-unbound-0:1.25.1-1.fc43 100% |   2.3 MiB/s | 119.1 KiB |  00m00s
+#6 12.84 [35/35] unbound-anchor-0:1.25.1-1.fc43. 100% | 886.3 KiB/s |  39.0 KiB |  00m00s
+#6 12.84 --------------------------------------------------------------------------------
+#6 12.84 [35/35] Total                           100% |  14.5 MiB/s |  16.7 MiB |  00m01s
+#6 12.84 Running transaction
+#6 13.63 [ 1/37] Verify package files            100% | 187.0   B/s |  35.0   B |  00m00s
+#6 13.63 [ 2/37] Prepare transaction             100% | 466.0   B/s |  35.0   B |  00m00s
+#6 13.69 [ 3/37] Installing ngtcp2-0:1.22.1-1.fc 100% |   7.9 MiB/s | 323.8 KiB |  00m00s
+#6 13.72 [ 4/37] Installing expat-0:2.8.1-1.fc43 100% |   7.8 MiB/s | 317.5 KiB |  00m00s
+#6 13.73 [ 5/37] Installing ngtcp2-crypto-ossl-0 100% |   4.0 MiB/s |  52.6 KiB |  00m00s
+#6 13.74 [ 6/37] Installing protobuf-c-0:1.5.2-1 100% |   5.6 MiB/s |  51.4 KiB |  00m00s
+#6 13.76 [ 7/37] Installing hiredis-0:1.2.0-7.fc 100% |   8.8 MiB/s | 107.6 KiB |  00m00s
+#6 13.78 [ 8/37] Installing libdnf-0:0.75.0-1.fc 100% | 123.5 MiB/s |   2.2 MiB |  00m00s
+#6 13.80 [ 9/37] Installing gpgme-0:1.24.3-6.fc4 100% |  19.2 MiB/s | 590.4 KiB |  00m00s
+#6 13.81 [10/37] Installing libcomps-0:0.1.23-1. 100% |  16.8 MiB/s | 206.6 KiB |  00m00s
+#6 13.83 [11/37] Installing dns-root-data-0:2026 100% |   1.5 MiB/s |  12.5 KiB |  00m00s
+#6 13.84 [12/37] Installing dbus-libs-1:1.16.2-1 100% |  33.8 MiB/s | 346.5 KiB |  00m00s
+#6 13.85 [13/37] Installing dnf-data-0:4.24.0-1. 100% |   2.9 MiB/s |  41.8 KiB |  00m00s
+#6 13.86 [14/37] Installing python-pip-wheel-0:2 100% | 113.2 MiB/s |   1.2 MiB |  00m00s
+#6 13.94 [15/37] Installing mpdecimal-0:4.0.1-2. 100% |  11.2 MiB/s | 218.8 KiB |  00m00s
+#6 14.51 [16/37] Installing python3-libs-0:3.14. 100% |  69.4 MiB/s |  43.6 MiB |  00m01s
+#6 14.58 [17/37] Installing python3-0:3.14.5-1.f 100% | 423.0 KiB/s |  30.5 KiB |  00m00s
+#6 14.58 >>> Running sysusers scriptlet: unbound-libs-0:1.25.1-1.fc43.x86_64             
+#6 14.58 >>> Finished sysusers scriptlet: unbound-libs-0:1.25.1-1.fc43.x86_64            
+#6 14.58 >>> Scriptlet output:                                                           
+#6 14.58 >>> Creating group 'unbound' with GID 999.                                      
+#6 14.58 >>> Creating user 'unbound' (Unbound DNS resolver) with UID 999 and GID 999.    
+#6 14.58 >>>                                                                             
+#6 14.64 [18/37] Installing unbound-libs-0:1.25. 100% |  67.6 MiB/s |   1.5 MiB |  00m00s
+#6 14.66 [19/37] Installing python3-libdnf-0:0.7 100% |  77.6 MiB/s |   3.7 MiB |  00m00s
+#6 14.67 [20/37] Installing python3-hawkey-0:0.7 100% |  18.2 MiB/s | 298.5 KiB |  00m00s
+#6 14.68 [21/37] Installing gnutls-dane-0:3.8.13 100% |  14.7 MiB/s | 150.6 KiB |  00m00s
+#6 14.69 [22/37] Installing wget2-libs-0:2.2.1-1 100% |  26.4 MiB/s | 378.9 KiB |  00m00s
+#6 14.74 [23/37] Installing wget2-0:2.2.1-1.fc43 100% |  35.8 MiB/s |   1.1 MiB |  00m00s
+#6 14.75 [24/37] Installing python3-dbus-0:1.4.0 100% |  25.4 MiB/s | 546.0 KiB |  00m00s
+#6 14.78 [25/37] Installing python3-distro-0:1.9 100% |   7.8 MiB/s | 214.9 KiB |  00m00s
+#6 14.79 [26/37] Installing python3-systemd-0:23 100% |  18.3 MiB/s | 356.4 KiB |  00m00s
+#6 14.81 [27/37] Installing python3-six-0:1.17.0 100% |  13.1 MiB/s | 120.3 KiB |  00m00s
+#6 14.82 [28/37] Installing python3-dateutil-1:2 100% |  48.3 MiB/s | 891.1 KiB |  00m00s
+#6 14.83 [29/37] Installing python3-libcomps-0:0 100% |  13.9 MiB/s | 141.9 KiB |  00m00s
+#6 14.89 [30/37] Installing python3-rpm-0:6.0.1- 100% |  14.9 MiB/s | 183.1 KiB |  00m00s
+#6 14.92 [31/37] Installing python3-dnf-0:4.24.0 100% |  35.8 MiB/s |   2.8 MiB |  00m00s
+#6 14.95 [32/37] Installing python3-dnf-plugins- 100% |  37.0 MiB/s |   1.2 MiB |  00m00s
+#6 14.96 [33/37] Installing dnf-plugins-core-0:4 100% |   5.1 MiB/s |  25.9 KiB |  00m00s
+#6 14.99 [34/37] Installing wget2-wget-0:2.2.1-1 100% |  18.9 KiB/s | 444.0   B |  00m00s
+#6 15.00 [35/37] Installing python3-unbound-0:1. 100% |  50.9 MiB/s | 521.6 KiB |  00m00s
+#6 15.03 [36/37] Installing unbound-anchor-0:1.2 100% |   1.5 MiB/s |  55.1 KiB |  00m00s
+#6 16.39 [37/37] Installing python-unversioned-c 100% | 312.0   B/s | 424.0   B |  00m01s
+#6 16.39 Complete!
+#6 17.11  https://copr.fedorainfracloud.org/api_ 100% |   1.0 KiB/s | 430.0   B |  00m00s
+#6 17.11 Enabling a Copr repository. Please note that this repository is not part
+#6 17.11 of the main distribution, and quality may vary.
+#6 17.11 
+#6 17.11 The Fedora Project does not exercise any power over the contents of
+#6 17.11 this repository beyond the rules outlined in the Copr FAQ at
+#6 17.11 <https://docs.pagure.org/copr.copr/user_documentation.html#what-i-can-build-in-copr>,
+#6 17.11 and packages are not held to any quality or security level.
+#6 17.11 
+#6 17.11 Please do not file bug reports about these packages in Fedora
+#6 17.11 Bugzilla. In case of problems, contact the owner of this repository.
+#6 17.16 Updating and loading repositories:
+#6 17.78  Copr repo for eza owned by alternateve 100% |   6.7 KiB/s |   2.8 KiB |  00m00s
+#6 18.05  Hashicorp Stable - x86_64              100% | 654.6 KiB/s | 447.1 KiB |  00m01s
+#6 18.22 Repositories loaded.
+#6 18.62 Total size of inbound packages is 6 MiB. Need to download 6 MiB.
+#6 18.62 After this operation, 86 KiB extra will be used (install 16 MiB, remove 16 MiB).
+#6 18.62 Package                                  Arch   Version          Repository                            Size
+#6 18.62 Upgrading:
+#6 18.62  dnf5                                    x86_64 5.2.18.0-4.fc43  updates                            2.8 MiB
+#6 18.62    replacing dnf5                        x86_64 5.2.18.0-3.fc43  a583b031fd774eb6b28415e695d39fd4   2.8 MiB
+#6 18.62  dnf5-plugins                            x86_64 5.2.18.0-4.fc43  updates                            1.3 MiB
+#6 18.62    replacing dnf5-plugins                x86_64 5.2.18.0-3.fc43  a583b031fd774eb6b28415e695d39fd4   1.3 MiB
+#6 18.62  libdnf5                                 x86_64 5.2.18.0-4.fc43  updates                            3.8 MiB
+#6 18.62    replacing libdnf5                     x86_64 5.2.18.0-3.fc43  a583b031fd774eb6b28415e695d39fd4   3.8 MiB
+#6 18.62  libdnf5-cli                             x86_64 5.2.18.0-4.fc43  updates                          924.8 KiB
+#6 18.62    replacing libdnf5-cli                 x86_64 5.2.18.0-3.fc43  a583b031fd774eb6b28415e695d39fd4 924.9 KiB
+#6 18.62  libsolv                                 x86_64 0.7.39-1.fc43    updates                          981.1 KiB
+#6 18.62    replacing libsolv                     x86_64 0.7.37-2.fc43    a583b031fd774eb6b28415e695d39fd4 979.7 KiB
+#6 18.62  libusb1                                 x86_64 1.0.30-1.fc43    updates                          176.0 KiB
+#6 18.62    replacing libusb1                     x86_64 1.0.29-4.fc43    1acbf571e68e495d8ab96297aca5a80a 171.3 KiB
+#6 18.62  systemd-libs                            x86_64 258.8-1.fc43     updates                            2.3 MiB
+#6 18.62    replacing systemd-libs                x86_64 258.7-1.fc43     a583b031fd774eb6b28415e695d39fd4   2.3 MiB
+#6 18.62  systemd-standalone-sysusers             x86_64 258.8-1.fc43     updates                          293.4 KiB
+#6 18.62    replacing systemd-standalone-sysusers x86_64 258.7-1.fc43     a583b031fd774eb6b28415e695d39fd4 293.6 KiB
+#6 18.62  tzdata                                  noarch 2026b-1.fc43     updates                            1.6 MiB
+#6 18.62    replacing tzdata                      noarch 2026a-1.fc43     a583b031fd774eb6b28415e695d39fd4   1.6 MiB
+#6 18.62  vim-data                                noarch 2:9.2.530-1.fc43 updates                           10.2 KiB
+#6 18.62    replacing vim-data                    noarch 2:9.2.500-1.fc43 a583b031fd774eb6b28415e695d39fd4  10.2 KiB
+#6 18.62  vim-minimal                             x86_64 2:9.2.530-1.fc43 updates                            1.7 MiB
+#6 18.62    replacing vim-minimal                 x86_64 2:9.2.500-1.fc43 a583b031fd774eb6b28415e695d39fd4   1.7 MiB
+#6 18.62 Installing weak dependencies:
+#6 18.62  libdnf5-plugin-expired-pgp-keys         x86_64 5.2.18.0-4.fc43  updates                           82.4 KiB
+#6 18.62 
+#6 18.62 Transaction Summary:
+#6 18.62  Installing:         1 package
+#6 18.62  Upgrading:         11 packages
+#6 18.62  Replacing:         11 packages
+#6 18.62 
+#6 19.25 [ 1/12] libdnf5-plugin-expired-pgp-keys 100% | 318.2 KiB/s |  73.5 KiB |  00m00s
+#6 19.39 [ 2/12] libdnf5-cli-0:5.2.18.0-4.fc43.x 100% |   2.4 MiB/s | 335.4 KiB |  00m00s
+#6 19.41 [ 3/12] libdnf5-0:5.2.18.0-4.fc43.x86_6 100% |   3.2 MiB/s |   1.3 MiB |  00m00s
+#6 19.45 [ 4/12] dnf5-0:5.2.18.0-4.fc43.x86_64   100% |   2.1 MiB/s | 920.7 KiB |  00m00s
+#6 19.46 [ 5/12] libsolv-0:0.7.39-1.fc43.x86_64  100% |   7.7 MiB/s | 451.0 KiB |  00m00s
+#6 19.49 [ 6/12] dnf5-plugins-0:5.2.18.0-4.fc43. 100% |   4.3 MiB/s | 455.2 KiB |  00m00s
+#6 19.51 [ 7/12] libusb1-0:1.0.30-1.fc43.x86_64  100% |   1.4 MiB/s |  80.5 KiB |  00m00s
+#6 19.57 [ 8/12] systemd-standalone-sysusers-0:2 100% |   1.9 MiB/s | 148.5 KiB |  00m00s
+#6 19.59 [ 9/12] systemd-libs-0:258.8-1.fc43.x86 100% |   6.4 MiB/s | 828.8 KiB |  00m00s
+#6 19.62 [10/12] vim-data-2:9.2.530-1.fc43.noarc 100% | 357.7 KiB/s |  17.9 KiB |  00m00s
+#6 19.69 [11/12] vim-minimal-2:9.2.530-1.fc43.x8 100% |   8.5 MiB/s | 864.6 KiB |  00m00s
+#6 19.71 [12/12] tzdata-0:2026b-1.fc43.noarch    100% |   3.5 MiB/s | 712.7 KiB |  00m00s
+#6 19.71 --------------------------------------------------------------------------------
+#6 19.71 [12/12] Total                           100% |   5.5 MiB/s |   6.0 MiB |  00m01s
+#6 19.71 Running transaction
+#6 20.10 [ 1/25] Verify package files            100% | 181.0   B/s |  12.0   B |  00m00s
+#6 20.11 [ 2/25] Prepare transaction             100% | 433.0   B/s |  23.0   B |  00m00s
+#6 20.17 [ 3/25] Upgrading systemd-libs-0:258.8- 100% |  51.9 MiB/s |   2.3 MiB |  00m00s
+#6 20.18 [ 4/25] Upgrading vim-data-2:9.2.530-1. 100% | 663.8 KiB/s |  11.3 KiB |  00m00s
+#6 20.21 [ 5/25] Upgrading libsolv-0:0.7.39-1.fc 100% |  48.0 MiB/s | 983.1 KiB |  00m00s
+#6 20.27 [ 6/25] Upgrading libdnf5-0:5.2.18.0-4. 100% |  57.2 MiB/s |   3.8 MiB |  00m00s
+#6 20.30 [ 7/25] Upgrading libdnf5-cli-0:5.2.18. 100% |  56.7 MiB/s | 929.6 KiB |  00m00s
+#6 20.34 [ 8/25] Upgrading dnf5-0:5.2.18.0-4.fc4 100% |  42.7 MiB/s |   2.8 MiB |  00m00s
+#6 20.39 [ 9/25] Upgrading dnf5-plugins-0:5.2.18 100% |  31.7 MiB/s |   1.4 MiB |  00m00s
+#6 20.42 [10/25] Installing libdnf5-plugin-expir 100% |   7.4 MiB/s |  83.6 KiB |  00m00s
+#6 20.44 [11/25] Upgrading vim-minimal-2:9.2.530 100% |  37.1 MiB/s |   1.7 MiB |  00m00s
+#6 20.55 [12/25] Upgrading libusb1-0:1.0.30-1.fc 100% |  10.2 MiB/s | 177.7 KiB |  00m00s
+#6 20.84 [13/25] Upgrading tzdata-0:2026b-1.fc43 100% |   5.1 MiB/s |   1.9 MiB |  00m00s
+#6 20.86 [14/25] Upgrading systemd-standalone-sy 100% |   9.6 MiB/s | 294.0 KiB |  00m00s
+#6 21.07 [15/25] Removing dnf5-plugins-0:5.2.18. 100% | 855.0   B/s | 154.0   B |  00m00s
+#6 21.11 [16/25] Removing dnf5-0:5.2.18.0-3.fc43 100% |   2.8 KiB/s | 156.0   B |  00m00s
+#6 21.12 [17/25] Removing libdnf5-cli-0:5.2.18.0 100% |   1.4 KiB/s |  30.0   B |  00m00s
+#6 21.14 [18/25] Removing libdnf5-0:5.2.18.0-3.f 100% |   3.6 KiB/s |  56.0   B |  00m00s
+#6 21.15 [19/25] Removing libusb1-0:1.0.29-4.fc4 100% | 916.0   B/s |  11.0   B |  00m00s
+#6 21.17 [20/25] Removing tzdata-0:2026a-1.fc43. 100% |  87.0 KiB/s |   1.8 KiB |  00m00s
+#6 21.18 [21/25] Removing vim-minimal-2:9.2.500- 100% | 882.0   B/s |  15.0   B |  00m00s
+#6 21.20 [22/25] Removing vim-data-2:9.2.500-1.f 100% |   1.0 KiB/s |   7.0   B |  00m00s
+#6 21.22 [23/25] Removing systemd-libs-0:258.7-1 100% |   1.1 KiB/s |  23.0   B |  00m00s
+#6 21.24 [24/25] Removing libsolv-0:0.7.37-2.fc4 100% | 545.0   B/s |  12.0   B |  00m00s
+#6 21.43 [25/25] Removing systemd-standalone-sys 100% |  15.0   B/s |   3.0   B |  00m00s
+#6 21.44 Complete!
+#6 21.49 Updating and loading repositories:
+#6 22.25 Repositories loaded.
+#6 23.15  https://github.com/PowerShell/PowerShe 100% |  75.9 MiB/s |  68.3 MiB |  00m01s
+#6 23.40 Package "curl-8.15.0-7.fc43.x86_64" is already installed.
+#6 23.40 Package "gnupg2-2.4.9-5.fc43.x86_64" is already installed.
+#6 23.40 
+#6 23.40 Package                 Arch   Version                 Repository        Size
+#6 23.40 Installing:
+#6 23.40  ansible                noarch 11.13.0-1.fc43          updates      378.8 MiB
+#6 23.40  bind-utils             x86_64 32:9.18.49-1.fc43       updates      663.5 KiB
+#6 23.40  btop                   x86_64 1.4.7-1.fc43            updates        1.7 MiB
+#6 23.40  busybox                x86_64 1:1.37.0-3.fc43         fedora         1.4 MiB
+#6 23.40  eza                    x86_64 0.23.4-3.fc43           updates        2.2 MiB
+#6 23.40  fzf                    x86_64 0.73.1-1.fc43           updates        5.0 MiB
+#6 23.40  git                    x86_64 2.54.0-1.fc43           updates       57.7 KiB
+#6 23.40  helm                   x86_64 3.19.0-1.fc43           fedora        76.2 MiB
+#6 23.40  htop                   x86_64 3.4.1-2.fc43            fedora       456.3 KiB
+#6 23.40  iperf3                 x86_64 3.19.1-1.fc43           fedora       301.5 KiB
+#6 23.40  iputils                x86_64 20250605-1.fc43         fedora       828.4 KiB
+#6 23.40  jq                     x86_64 1.8.1-3.fc43            updates      461.7 KiB
+#6 23.40  kubectl                x86_64 1.35.5-150500.1.1       kubernetes    55.9 MiB
+#6 23.40  libicu                 x86_64 77.1-1.fc43             fedora        36.4 MiB
+#6 23.40  mtr                    x86_64 2:0.95-13.fc43          fedora       184.9 KiB
+#6 23.40  ncurses                x86_64 6.5-7.20250614.fc43     fedora       609.8 KiB
+#6 23.40  nmap-ncat              x86_64 4:7.92-6.fc43           fedora       465.7 KiB
+#6 23.40  openssh-clients        x86_64 10.0p1-9.fc43           updates        2.6 MiB
+#6 23.40  powershell             x86_64 7.6.2-1.rh              @commandline 188.4 MiB
+#6 23.40  terraform              x86_64 1.15.5-1                hashicorp    111.7 MiB
+#6 23.40  unzip                  x86_64 6.0-67.fc43             fedora       386.3 KiB
+#6 23.40  vim-enhanced           x86_64 2:9.2.530-1.fc43        updates        4.3 MiB
+#6 23.40  yq                     x86_64 4.47.1-2.fc43           fedora        11.3 MiB
+#6 23.40 Installing dependencies:
+#6 23.40  ansible-core           noarch 2.18.12-1.fc43          updates       14.3 MiB
+#6 23.40  bind-libs              x86_64 32:9.18.49-1.fc43       updates        3.6 MiB
+#6 23.40  fstrm                  x86_64 0.6.1-13.fc43           fedora        50.7 KiB
+#6 23.40  git-core               x86_64 2.54.0-1.fc43           updates       24.6 MiB
+#6 23.40  git-core-doc           noarch 2.54.0-1.fc43           updates       18.7 MiB
+#6 23.40  gpm-libs               x86_64 1.20.7-52.fc43          fedora        31.6 KiB
+#6 23.40  groff-base             x86_64 1.23.0-11.fc43          updates        3.8 MiB
+#6 23.40  hicolor-icon-theme     noarch 0.18-2.fc43             fedora        72.4 KiB
+#6 23.40  hwloc-libs             x86_64 2.12.0-2.fc43           fedora         2.9 MiB
+#6 23.40  jansson                x86_64 2.14-3.fc43             fedora        89.1 KiB
+#6 23.40  less                   x86_64 692-6.fc43              updates      455.2 KiB
+#6 23.40  libcbor                x86_64 0.12.0-6.fc43           fedora        77.8 KiB
+#6 23.40  libedit                x86_64 3.1-58.20260512cvs.fc43 updates      240.3 KiB
+#6 23.40  libfdisk               x86_64 2.41.4-7.fc43           updates      380.4 KiB
+#6 23.40  libfido2               x86_64 1.16.0-3.fc43           fedora       238.5 KiB
+#6 23.40  libibverbs             x86_64 58.0-4.fc43             fedora         1.2 MiB
+#6 23.40  liblastlog2            x86_64 2.41.4-7.fc43           updates       33.9 KiB
+#6 23.40  libmaxminddb           x86_64 1.13.3-1.fc43           updates       88.9 KiB
+#6 23.40  libnl3                 x86_64 3.12.0-2.fc43           updates        1.0 MiB
+#6 23.40  libpcap                x86_64 14:1.10.6-1.fc43        updates      421.1 KiB
+#6 23.40  libsodium              x86_64 1.0.22-1.fc43           updates      477.6 KiB
+#6 23.40  libuv                  x86_64 1:1.51.0-2.fc43         fedora       570.2 KiB
+#6 23.40  lksctp-tools           x86_64 1.0.21-1.fc43           fedora       251.0 KiB
+#6 23.40  lmdb-libs              x86_64 0.9.34-1.fc43           updates      106.0 KiB
+#6 23.40  oniguruma              x86_64 6.9.10-3.fc43           fedora       763.1 KiB
+#6 23.40  openssh                x86_64 10.0p1-9.fc43           updates        1.4 MiB
+#6 23.40  perl-AutoLoader        noarch 5.74-523.fc43           updates       20.6 KiB
+#6 23.40  perl-B                 x86_64 1.89-523.fc43           updates      501.3 KiB
+#6 23.40  perl-Carp              noarch 1.54-520.fc43           fedora        46.6 KiB
+#6 23.40  perl-Class-Struct      noarch 0.68-523.fc43           updates       25.4 KiB
+#6 23.40  perl-Data-Dumper       x86_64 2.191-521.fc43          fedora       115.6 KiB
+#6 23.40  perl-Digest            noarch 1.20-520.fc43           fedora        35.3 KiB
+#6 23.40  perl-Digest-MD5        x86_64 2.59-520.fc43           fedora        59.7 KiB
+#6 23.40  perl-DynaLoader        x86_64 1.57-523.fc43           updates       32.1 KiB
+#6 23.40  perl-Encode            x86_64 4:3.21-520.fc43         fedora         4.7 MiB
+#6 23.40  perl-Errno             x86_64 1.38-523.fc43           updates        8.4 KiB
+#6 23.40  perl-Error             noarch 1:0.17030-2.fc43        fedora        76.7 KiB
+#6 23.40  perl-Exporter          noarch 5.79-520.fc43           fedora        54.3 KiB
+#6 23.40  perl-Fcntl             x86_64 1.20-523.fc43           updates       48.8 KiB
+#6 23.40  perl-File-Basename     noarch 2.86-523.fc43           updates       14.0 KiB
+#6 23.40  perl-File-Path         noarch 2.18-520.fc43           fedora        63.5 KiB
+#6 23.40  perl-File-Temp         noarch 1:0.231.100-520.fc43    fedora       162.3 KiB
+#6 23.40  perl-File-stat         noarch 1.14-523.fc43           updates       12.5 KiB
+#6 23.40  perl-FileHandle        noarch 2.05-523.fc43           updates        9.4 KiB
+#6 23.40  perl-Getopt-Long       noarch 1:2.58-520.fc43         fedora       144.5 KiB
+#6 23.40  perl-Getopt-Std        noarch 1.14-523.fc43           updates       11.2 KiB
+#6 23.40  perl-Git               noarch 2.54.0-1.fc43           updates       64.4 KiB
+#6 23.40  perl-HTTP-Tiny         noarch 0.094-1.fc43            updates      158.2 KiB
+#6 23.40  perl-IO                x86_64 1.55-523.fc43           updates      147.4 KiB
+#6 23.40  perl-IO-Socket-IP      noarch 0.43-521.fc43           fedora       100.3 KiB
+#6 23.40  perl-IO-Socket-SSL     noarch 2.095-2.fc43            fedora       714.5 KiB
+#6 23.40  perl-IPC-Open3         noarch 1.24-523.fc43           updates       27.7 KiB
+#6 23.40  perl-MIME-Base32       noarch 1.303-24.fc43           fedora        30.7 KiB
+#6 23.40  perl-MIME-Base64       x86_64 3.16-520.fc43           fedora        42.0 KiB
+#6 23.40  perl-Net-SSLeay        x86_64 1.94-11.fc43            fedora         1.3 MiB
+#6 23.40  perl-POSIX             x86_64 2.23-523.fc43           updates      229.5 KiB
+#6 23.40  perl-PathTools         x86_64 3.94-520.fc43           fedora       180.0 KiB
+#6 23.40  perl-Pod-Escapes       noarch 1:1.07-520.fc43         fedora        24.9 KiB
+#6 23.40  perl-Pod-Perldoc       noarch 3.28.01-521.fc43        fedora       163.7 KiB
+#6 23.40  perl-Pod-Simple        noarch 1:3.47-3.fc43           fedora       565.3 KiB
+#6 23.40  perl-Pod-Usage         noarch 4:2.05-520.fc43         fedora        86.3 KiB
+#6 23.40  perl-Scalar-List-Utils x86_64 5:1.70-1.fc43           fedora       144.9 KiB
+#6 23.40  perl-SelectSaver       noarch 1.02-523.fc43           updates        2.2 KiB
+#6 23.40  perl-Socket            x86_64 4:2.040-2.fc43          fedora       120.3 KiB
+#6 23.40  perl-Storable          x86_64 1:3.37-521.fc43         fedora       231.2 KiB
+#6 23.40  perl-Symbol            noarch 1.09-523.fc43           updates        6.8 KiB
+#6 23.40  perl-Term-ANSIColor    noarch 5.01-521.fc43           fedora        97.5 KiB
+#6 23.40  perl-Term-Cap          noarch 1.18-520.fc43           fedora        29.3 KiB
+#6 23.40  perl-TermReadKey       x86_64 2.38-26.fc43            fedora        64.0 KiB
+#6 23.40  perl-Text-ParseWords   noarch 3.31-520.fc43           fedora        13.6 KiB
+#6 23.40  perl-Text-Tabs+Wrap    noarch 2024.001-520.fc43       fedora        22.6 KiB
+#6 23.40  perl-Time-HiRes        x86_64 4:1.9778-520.fc43       fedora       115.8 KiB
+#6 23.40  perl-Time-Local        noarch 2:1.350-520.fc43        fedora        69.0 KiB
+#6 23.40  perl-URI               noarch 5.34-2.fc43             updates      268.0 KiB
+#6 23.40  perl-base              noarch 2.27-523.fc43           updates       12.6 KiB
+#6 23.40  perl-constant          noarch 1.33-521.fc43           fedora        26.2 KiB
+#6 23.40  perl-if                noarch 0.61.000-523.fc43       updates        5.8 KiB
+#6 23.40  perl-interpreter       x86_64 4:5.42.2-523.fc43       updates      118.8 KiB
+#6 23.40  perl-lib               x86_64 0.65-523.fc43           updates        8.5 KiB
+#6 23.40  perl-libnet            noarch 3.15-521.fc43           fedora       289.4 KiB
+#6 23.40  perl-libs              x86_64 4:5.42.2-523Total size of inbound packages is 260 MiB. Need to download 192 MiB.
+#6 23.41 After this operation, 1 GiB extra will be used (install 1 GiB, remove 0 B).
+#6 23.41 .fc43       updates       11.5 MiB
+#6 23.41  perl-locale            noarch 1.13-523.fc43           updates        6.1 KiB
+#6 23.41  perl-mro               x86_64 1.29-523.fc43           updates       41.6 KiB
+#6 23.41  perl-overload          noarch 1.40-523.fc43           updates       71.6 KiB
+#6 23.41  perl-overloading       noarch 0.02-523.fc43           updates        4.9 KiB
+#6 23.41  perl-parent            noarch 1:0.244-520.fc43        fedora        10.3 KiB
+#6 23.41  perl-podlators         noarch 1:6.0.2-520.fc43        fedora       317.5 KiB
+#6 23.41  perl-vars              noarch 1.05-523.fc43           updates        3.9 KiB
+#6 23.41  python3-argcomplete    noarch 3.6.3-2.fc43            updates      325.3 KiB
+#6 23.41  python3-cffi           x86_64 2.0.0-2.fc43            fedora         1.4 MiB
+#6 23.41  python3-cryptography   x86_64 46.0.7-1.fc43           updates        5.6 MiB
+#6 23.41  python3-jinja2         noarch 3.1.6-6.fc43            fedora         3.1 MiB
+#6 23.41  python3-markupsafe     x86_64 3.0.2-6.fc43            fedora        61.5 KiB
+#6 23.41  python3-packaging      noarch 25.0-7.fc43             fedora       607.4 KiB
+#6 23.41  python3-ply            noarch 3.11-33.fc43            updates      564.3 KiB
+#6 23.41  python3-pycparser      noarch 2.22-5.fc43             fedora         1.5 MiB
+#6 23.41  python3-pyyaml         x86_64 6.0.2-7.fc43            fedora       793.4 KiB
+#6 23.41  python3-resolvelib     noarch 1.0.1-11.fc43           fedora        92.3 KiB
+#6 23.41  util-linux             x86_64 2.41.4-7.fc43           updates        3.5 MiB
+#6 23.41  vim-common             x86_64 2:9.2.530-1.fc43        updates       38.5 MiB
+#6 23.41  vim-filesystem         noarch 2:9.2.530-1.fc43        updates       40.0   B
+#6 23.41  which                  x86_64 2.23-3.fc43             fedora        83.5 KiB
+#6 23.41  xxd                    x86_64 2:9.2.530-1.fc43        updates       33.2 KiB
+#6 23.41 Installing weak dependencies:
+#6 23.41  7zip                   x86_64 25.01-1.fc43            updates        3.3 MiB
+#6 23.41  bat                    x86_64 0.26.1-1.fc43           updates        5.9 MiB
+#6 23.41  less-color             x86_64 692-6.fc43              updates        2.3 KiB
+#6 23.41  perl-NDBM_File         x86_64 1.18-523.fc43           updates       28.5 KiB
+#6 23.41  python3-html2text      noarch 2025.4.15-5.fc43        fedora       289.0 KiB
+#6 23.41  python3-libdnf5        x86_64 5.2.18.0-4.fc43         updates        9.2 MiB
+#6 23.41  rocm-smi               x86_64 6.4.3-1.fc43            fedora         2.7 MiB
+#6 23.41 
+#6 23.41 Transaction Summary:
+#6 23.41  Installing:       133 packages
+#6 23.41 
+#6 24.09 [  1/132] unzip-0:6.0-67.fc43.x86_64    100% | 466.1 KiB/s | 183.7 KiB |  00m00s
+#6 24.10 [  2/132] iputils-0:20250605-1.fc43.x86 100% | 521.0 KiB/s | 209.5 KiB |  00m00s
+#6 24.13 [  3/132] ncurses-0:6.5-7.20250614.fc43 100% | 966.4 KiB/s | 426.2 KiB |  00m00s
+#6 24.17 [  4/132] mtr-2:0.95-13.fc43.x86_64     100% |   1.2 MiB/s |  87.4 KiB |  00m00s
+#6 24.24 [  5/132] nmap-ncat-4:7.92-6.fc43.x86_6 100% |   2.2 MiB/s | 224.5 KiB |  00m00s
+#6 24.31 [  6/132] busybox-1:1.37.0-3.fc43.x86_6 100% |   3.5 MiB/s | 784.3 KiB |  00m00s
+#6 24.33 [  7/132] htop-0:3.4.1-2.fc43.x86_64    100% |   2.0 MiB/s | 200.0 KiB |  00m00s
+#6 24.42 [  8/132] jansson-0:2.14-3.fc43.x86_64  100% | 545.5 KiB/s |  45.3 KiB |  00m00s
+#6 24.47 [  9/132] yq-0:4.47.1-2.fc43.x86_64     100% |  12.6 MiB/s |   3.9 MiB |  00m00s
+#6 24.70 [ 10/132] hwloc-libs-0:2.12.0-2.fc43.x8 100% |   7.4 MiB/s |   2.1 MiB |  00m00s
+#6 24.87 [ 11/132] libicu-0:77.1-1.fc43.x86_64   100% |  27.4 MiB/s |  10.7 MiB |  00m00s
+#6 25.00 [ 12/132] helm-0:3.19.0-1.fc43.x86_64   100% |  25.9 MiB/s |  17.9 MiB |  00m01s
+#6 25.08 [ 13/132] libfido2-0:1.16.0-3.fc43.x86_ 100% |   1.3 MiB/s |  98.5 KiB |  00m00s
+#6 25.14 [ 14/132] libcbor-0:0.12.0-6.fc43.x86_6 100% | 500.2 KiB/s |  33.5 KiB |  00m00s
+#6 25.15 [ 15/132] openssh-clients-0:10.0p1-9.fc 100% |   1.6 MiB/s | 747.0 KiB |  00m00s
+#6 25.19 [ 16/132] git-0:2.54.0-1.fc43.x86_64    100% | 953.9 KiB/s |  41.0 KiB |  00m00s
+#6 25.27 [ 17/132] openssh-0:10.0p1-9.fc43.x86_6 100% | 846.3 KiB/s | 338.5 KiB |  00m00s
+#6 25.32 [ 18/132] perl-Git-0:2.54.0-1.fc43.noar 100% | 723.0 KiB/s |  37.6 KiB |  00m00s
+#6 25.39 [ 19/132] perl-Getopt-Long-1:2.58-520.f 100% | 883.8 KiB/s |  63.6 KiB |  00m00s
+#6 25.44 [ 20/132] git-core-doc-0:2.54.0-1.fc43. 100% |  12.3 MiB/s |   3.1 MiB |  00m00s
+#6 25.52 [ 21/132] perl-TermReadKey-0:2.38-26.fc 100% | 489.5 KiB/s |  35.2 KiB |  00m00s
+#6 25.55 [ 22/132] perl-PathTools-0:3.94-520.fc4 100% | 570.1 KiB/s |  87.2 KiB |  00m00s
+#6 25.60 [ 23/132] perl-Error-1:0.17030-2.fc43.n 100% | 478.4 KiB/s |  40.2 KiB |  00m00s
+#6 25.66 [ 24/132] git-core-0:2.54.0-1.fc43.x86_ 100% |  10.5 MiB/s |   5.3 MiB |  00m01s
+#6 25.66 [ 25/132] perl-Exporter-0:5.79-520.fc43 100% | 275.5 KiB/s |  30.9 KiB |  00m00s
+#6 25.73 [ 26/132] perl-Pod-Usage-4:2.05-520.fc4 100% | 555.3 KiB/s |  40.5 KiB |  00m00s
+#6 25.74 [ 27/132] perl-Text-ParseWords-0:3.31-5 100% | 209.6 KiB/s |  16.3 KiB |  00m00s
+#6 25.77 [ 28/132] perl-constant-0:1.33-521.fc43 100% | 140.6 KiB/s |  22.8 KiB |  00m00s
+#6 25.81 [ 29/132] perl-Carp-0:1.54-520.fc43.noa 100% | 393.3 KiB/s |  28.7 KiB |  00m00s
+#6 25.84 [ 30/132] perl-Pod-Perldoc-0:3.28.01-52 100% |   1.1 MiB/s |  84.3 KiB |  00m00s
+#6 25.88 [ 31/132] perl-podlators-1:6.0.2-520.fc 100% |   1.8 MiB/s | 128.3 KiB |  00m00s
+#6 25.88 [ 32/132] perl-Scalar-List-Utils-5:1.70 100% | 520.5 KiB/s |  75.0 KiB |  00m00s
+#6 25.92 [ 33/132] perl-File-Temp-1:0.231.100-52 100% | 702.7 KiB/s |  59.0 KiB |  00m00s
+#6 25.96 [ 34/132] perl-Pod-Simple-1:3.47-3.fc43 100% |   2.6 MiB/s | 219.9 KiB |  00m00s
+#6 25.97 [ 35/132] perl-parent-1:0.244-520.fc43. 100% | 164.5 KiB/s |  14.8 KiB |  00m00s
+#6 26.00 [ 36/132] perl-Term-ANSIColor-0:5.01-52 100% | 634.3 KiB/s |  47.6 KiB |  00m00s
+#6 26.04 [ 37/132] perl-Term-Cap-0:1.18-520.fc43 100% | 284.8 KiB/s |  21.9 KiB |  00m00s
+#6 26.05 [ 38/132] perl-File-Path-0:2.18-520.fc4 100% | 467.4 KiB/s |  35.1 KiB |  00m00s
+#6 26.09 [ 39/132] perl-Pod-Escapes-1:1.07-520.f 100% | 219.8 KiB/s |  19.8 KiB |  00m00s
+#6 26.12 [ 40/132] perl-Text-Tabs+Wrap-0:2024.00 100% | 273.8 KiB/s |  21.6 KiB |  00m00s
+#6 26.21 [ 41/132] gpm-libs-0:1.20.7-52.fc43.x86 100% | 230.2 KiB/s |  20.0 KiB |  00m00s
+#6 26.28 [ 42/132] vim-enhanced-2:9.2.530-1.fc43 100% |   9.1 MiB/s |   2.0 MiB |  00m00s
+#6 26.29 [ 43/132] which-0:2.23-3.fc43.x86_64    100% | 502.8 KiB/s |  41.7 KiB |  00m00s
+#6 26.45 [ 44/132] bind-utils-32:9.18.49-1.fc43. 100% |   1.3 MiB/s | 223.5 KiB |  00m00s
+#6 26.48 [ 45/132] bind-libs-32:9.18.49-1.fc43.x 100% |   6.8 MiB/s |   1.3 MiB |  00m00s
+#6 26.55 [ 46/132] fstrm-0:0.6.1-13.fc43.x86_64  100% | 286.2 KiB/s |  28.1 KiB |  00m00s
+#6 26.57 [ 47/132] libuv-1:1.51.0-2.fc43.x86_64  100% |   2.8 MiB/s | 266.1 KiB |  00m00s
+#6 26.64 [ 48/132] iperf3-0:3.19.1-1.fc43.x86_64 100% |   1.4 MiB/s | 123.7 KiB |  00m00s
+#6 26.66 [ 49/132] lksctp-tools-0:1.0.21-1.fc43. 100% |   1.1 MiB/s |  96.8 KiB |  00m00s
+#6 26.70 [ 50/132] jq-0:1.8.1-3.fc43.x86_64      100% |   3.1 MiB/s | 211.8 KiB |  00m00s
+#6 26.75 [ 51/132] oniguruma-0:6.9.10-3.fc43.x86 100% |   2.3 MiB/s | 216.3 KiB |  00m00s
+#6 26.90 [ 52/132] eza-0:0.23.4-3.fc43.x86_64    100% |   6.1 MiB/s | 935.4 KiB |  00m00s
+#6 26.94 [ 53/132] fzf-0:0.73.1-1.fc43.x86_64    100% |   7.4 MiB/s |   1.7 MiB |  00m00s
+#6 27.33 [ 54/132] ansible-core-0:2.18.12-1.fc43 100% |   9.5 MiB/s |   3.7 MiB |  00m00s
+#6 27.53 [ 55/132] python3-jinja2-0:3.1.6-6.fc43 100% |   2.5 MiB/s | 515.8 KiB |  00m00s
+#6 27.65 [ 56/132] python3-packaging-0:25.0-7.fc 100% |   1.3 MiB/s | 161.5 KiB |  00m00s
+#6 27.74 [ 57/132] python3-pyyaml-0:6.0.2-7.fc43 100% |   2.7 MiB/s | 236.4 KiB |  00m00s
+#6 27.91 [ 58/132] python3-resolvelib-0:1.0.1-11 100% | 271.7 KiB/s |  46.2 KiB |  00m00s
+#6 27.99 [ 59/132] python3-markupsafe-0:3.0.2-6. 100% | 400.8 KiB/s |  31.7 KiB |  00m00s
+#6 28.15 [ 60/132] vim-common-2:9.2.530-1.fc43.x 100% |   4.1 MiB/s |   8.4 MiB |  00m02s
+#6 28.23 [ 61/132] hicolor-icon-theme-0:0.18-2.f 100% | 878.8 KiB/s |  65.9 KiB |  00m00s
+#6 28.26 [ 62/132] btop-0:1.4.7-1.fc43.x86_64    100% |   2.3 MiB/s | 636.2 KiB |  00m00s
+#6 28.93 [ 63/132] kubectl-0:1.35.5-150500.1.1.x 100% |  16.4 MiB/s |  11.1 MiB |  00m01s
+#6 28.98 [ 64/132] perl-File-Basename-0:2.86-523 100% | 342.4 KiB/s |  16.8 KiB |  00m00s
+#6 29.18 [ 65/132] terraform-0:1.15.5-1.x86_64   100% |  35.0 MiB/s |  33.2 MiB |  00m01s
+#6 29.18 [ 66/132] perl-POSIX-0:2.23-523.fc43.x8 100% | 488.3 KiB/s |  96.7 KiB |  00m00s
+#6 29.31 [ 67/132] perl-interpreter-4:5.42.2-523 100% | 541.4 KiB/s |  72.0 KiB |  00m00s
+#6 29.36 [ 68/132] perl-Errno-0:1.38-523.fc43.x8 100% | 310.0 KiB/s |  14.6 KiB |  00m00s
+#6 29.61 [ 69/132] perl-libs-4:5.42.2-523.fc43.x 100% |   6.1 MiB/s |   2.6 MiB |  00m00s
+#6 29.68 [ 70/132] perl-Encode-4:3.21-520.fc43.x 100% |   3.2 MiB/s |   1.1 MiB |  00m00s
+#6 29.75 [ 71/132] perl-MIME-Base64-0:3.16-520.f 100% | 209.2 KiB/s |  29.7 KiB |  00m00s
+#6 29.79 [ 72/132] perl-Storable-1:3.37-521.fc43 100% | 966.2 KiB/s |  98.5 KiB |  00m00s
+#6 29.80 [ 73/132] perl-DynaLoader-0:1.57-523.fc 100% | 534.2 KiB/s |  25.6 KiB |  00m00s
+#6 29.83 [ 74/132] perl-vars-0:1.05-523.fc43.noa 100% | 300.4 KiB/s |  12.6 KiB |  00m00s
+#6 29.84 [ 75/132] perl-Fcntl-0:1.20-523.fc43.x8 100% | 700.1 KiB/s |  29.4 KiB |  00m00s
+#6 29.92 [ 76/132] perl-IO-0:1.55-523.fc43.x86_6 100% | 939.5 KiB/s |  81.7 KiB |  00m00s
+#6 29.92 [ 77/132] perl-Socket-4:2.040-2.fc43.x8 100% | 686.8 KiB/s |  54.9 KiB |  00m00s
+#6 29.96 [ 78/132] perl-Symbol-0:1.09-523.fc43.n 100% | 307.3 KiB/s |  13.8 KiB |  00m00s
+#6 29.97 [ 79/132] perl-if-0:0.61.000-523.fc43.n 100% | 309.8 KiB/s |  13.6 KiB |  00m00s
+#6 30.49 [ 80/132] ansible-0:11.13.0-1.fc43.noar 100% |  16.9 MiB/s |  60.5 MiB |  00m04s
+#6 30.50 [ 81/132] perl-overload-0:1.40-523.fc43 100% |  83.7 KiB/s |  45.2 KiB |  00m01s
+#6 30.53 [ 82/132] groff-base-0:1.23.0-11.fc43.x 100% |   2.0 MiB/s |   1.1 MiB |  00m01s
+#6 30.55 [ 83/132] perl-HTTP-Tiny-0:0.094-1.fc43 100% |   1.0 MiB/s |  56.9 KiB |  00m00s
+#6 30.74 [ 84/132] perl-Time-HiRes-4:1.9778-520. 100% | 300.5 KiB/s |  57.1 KiB |  00m00s
+#6 31.38 [ 85/132] perl-Time-Local-2:1.350-520.f 100% |  53.5 KiB/s |  34.4 KiB |  00m01s
+#6 31.47 [ 86/132] perl-IO-Socket-SSL-0:2.095-2. 100% | 239.9 KiB/s | 231.5 KiB |  00m01s
+#6 31.56 [ 87/132] perl-IPC-Open3-0:1.24-523.fc4 100% | 258.7 KiB/s |  23.5 KiB |  00m00s
+#6 31.61 [ 88/132] perl-Net-SSLeay-0:1.94-11.fc4 100% | 348.0 KiB/s | 374.8 KiB |  00m01s
+#6 31.63 [ 89/132] perl-AutoLoader-0:5.74-523.fc 100% | 326.0 KiB/s |  20.9 KiB |  00m00s
+#6 31.71 [ 90/132] perl-URI-0:5.34-2.fc43.noarch 100% |   1.5 MiB/s | 149.3 KiB |  00m00s
+#6 31.79 [ 91/132] perl-MIME-Base32-0:1.303-24.f 100% | 239.4 KiB/s |  20.4 KiB |  00m00s
+#6 31.81 [ 92/132] perl-IO-Socket-IP-0:0.43-521. 100% |  98.3 KiB/s |  42.1 KiB |  00m00s
+#6 31.82 [ 93/132] perl-Data-Dumper-0:2.191-521. 100% | 287.1 KiB/s |  56.3 KiB |  00m00s
+#6 31.89 [ 94/132] perl-libnet-0:3.15-521.fc43.n 100% |   1.4 MiB/s | 128.3 KiB |  00m00s
+#6 31.90 [ 95/132] perl-Digest-MD5-0:2.59-520.fc 100% | 442.3 KiB/s |  35.8 KiB |  00m00s
+#6 31.92 [ 96/132] perl-Digest-0:1.20-520.fc43.n 100% | 263.7 KiB/s |  24.8 KiB |  00m00s
+#6 31.94 [ 97/132] perl-base-0:2.27-523.fc43.noa 100% | 273.0 KiB/s |  15.8 KiB |  00m00s
+#6 32.08 [ 98/132] perl-Getopt-Std-0:1.14-523.fc 100% |  90.1 KiB/s |  15.3 KiB |  00m00s
+#6 32.11 [ 99/132] libpcap-14:1.10.6-1.fc43.x86_ 100% |   1.1 MiB/s | 181.6 KiB |  00m00s
+#6 32.17 [100/132] perl-B-0:1.89-523.fc43.x86_64 100% | 703.5 KiB/s | 177.3 KiB |  00m00s
+#6 32.23 [101/132] libnl3-0:3.12.0-2.fc43.x86_64 100% |   3.0 MiB/s | 366.3 KiB |  00m00s
+#6 32.27 [102/132] libibverbs-0:58.0-4.fc43.x86_ 100% |   2.3 MiB/s | 447.8 KiB |  00m00s
+#6 32.29 [103/132] vim-filesystem-2:9.2.530-1.fc 100% | 279.3 KiB/s |  15.9 KiB |  00m00s
+#6 32.32 [104/132] xxd-2:9.2.530-1.fc43.x86_64   100% | 550.2 KiB/s |  31.9 KiB |  00m00s
+#6 32.34 [105/132] libsodium-0:1.0.22-1.fc43.x86 100% |   1.2 MiB/s | 209.2 KiB |  00m00s
+#6 32.36 [106/132] perl-mro-0:1.29-523.fc43.x86_ 100% | 427.5 KiB/s |  29.5 KiB |  00m00s
+#6 32.38 [107/132] perl-overloading-0:0.02-523.f 100% | 223.6 KiB/s |  12.5 KiB |  00m00s
+#6 32.40 [108/132] perl-locale-0:1.13-523.fc43.n 100% | 230.3 KiB/s |  13.1 KiB |  00m00s
+#6 32.41 [109/132] perl-File-stat-0:1.14-523.fc4 100% | 297.9 KiB/s |  16.7 KiB |  00m00s
+#6 32.44 [110/132] perl-SelectSaver-0:1.02-523.f 100% | 202.6 KiB/s |  11.3 KiB |  00m00s
+#6 32.45 [111/132] perl-Class-Struct-0:0.68-523. 100% | 387.6 KiB/s |  21.7 KiB |  00m00s
+#6 32.48 [112/132] libedit-0:3.1-58.20260512cvs. 100% |   1.5 MiB/s | 105.2 KiB |  00m00s
+#6 32.54 [113/132] perl-lib-0:0.65-523.fc43.x86_ 100% | 251.3 KiB/s |  14.6 KiB |  00m00s
+#6 32.55 [114/132] less-0:692-6.fc43.x86_64      100% |   2.2 MiB/s | 215.6 KiB |  00m00s
+#6 32.59 [115/132] lmdb-libs-0:0.9.34-1.fc43.x86 100% |   1.2 MiB/s |  61.7 KiB |  00m00s
+#6 32.60 [116/132] libmaxminddb-0:1.13.3-1.fc43. 100% | 890.7 KiB/s |  44.5 KiB |  00m00s
+#6 32.64 [117/132] util-linux-0:2.41.4-7.fc43.x8 100% |   6.0 MiB/s |   1.2 MiB |  00m00s
+#6 32.64 [118/132] python3-argcomplete-0:3.6.3-2 100% |   1.9 MiB/s |  99.2 KiB |  00m00s
+#6 32.77 [119/132] python3-cffi-0:2.0.0-2.fc43.x 100% |   2.4 MiB/s | 321.3 KiB |  00m00s
+#6 32.82 [120/132] python3-ply-0:3.11-33.fc43.no 100% |   2.8 MiB/s | 135.5 KiB |  00m00s
+#6 32.84 [121/132] python3-pycparser-0:2.22-5.fc 100% |   1.4 MiB/s | 274.4 KiB |  00m00s
+#6 32.87 [122/132] python3-cryptography-0:46.0.7 100% |   5.8 MiB/s |   1.6 MiB |  00m00s
+#6 32.88 [123/132] perl-FileHandle-0:2.05-523.fc 100% | 252.0 KiB/s |  15.1 KiB |  00m00s
+#6 32.89 [124/132] libfdisk-0:2.41.4-7.fc43.x86_ 100% |   2.9 MiB/s | 162.1 KiB |  00m00s
+#6 32.92 [125/132] liblastlog2-0:2.41.4-7.fc43.x 100% | 575.1 KiB/s |  23.6 KiB |  00m00s
+#6 32.96 [126/132] perl-NDBM_File-0:1.18-523.fc4 100% | 470.9 KiB/s |  22.1 KiB |  00m00s
+#6 33.08 [127/132] rocm-smi-0:6.4.3-1.fc43.x86_6 100% |   3.1 MiB/s | 605.5 KiB |  00m00s
+#6 33.13 [128/132] python3-libdnf5-0:5.2.18.0-4. 100% |   6.7 MiB/s |   1.6 MiB |  00m00s
+#6 33.14 [129/132] python3-html2text-0:2025.4.15 100% |   1.4 MiB/s |  81.6 KiB |  00m00s
+#6 33.16 [130/132] 7zip-0:25.01-1.fc43.x86_64    100% |   6.4 MiB/s |   1.2 MiB |  00m00s
+#6 33.17 [131/132] less-color-0:692-6.fc43.x86_6 100% | 241.6 KiB/s |  10.4 KiB |  00m00s
+#6 33.55 [132/132] bat-0:0.26.1-1.fc43.x86_64    100% |   6.8 MiB/s |   2.8 MiB |  00m00s
+#6 33.55 --------------------------------------------------------------------------------
+#6 33.55 [132/132] Total                         100% |  18.9 MiB/s | 191.7 MiB |  00m10s
+#6 33.55 Running transaction
+#6 34.49 [2A[  1/133] https://rpm.releases.hashicor 100% | 161.9 KiB/s |   3.9 KiB |  00m00s
+#6 34.51 --------------------------------------------------------------------------------
+#6 34.51 [133/133] Total                         100% |  18.9 MiB/s | 191.7 MiB |  00m10s
+#6 34.51 Importing OpenPGP key 0xA621E701:
+#6 34.51  UserID     : "HashiCorp Security (HashiCorp Package Signing) <security+packaging@hashicorp.com>"
+#6 34.51  Fingerprint: 798AEC654E5C15428C8E42EEAA16FCBCA621E701
+#6 34.51  From       : https://rpm.releases.hashicorp.com/gpg
+#6 34.54 The key was successfully imported.
+#6 34.71 [2A[  1/134] https://pkgs.k8s.io/core:/sta 100% |  10.1 KiB/s |   1.7 KiB |  00m00s
+#6 34.88 --------------------------------------------------------------------------------
+#6 34.88 [134/134] Total                         100% |  18.9 MiB/s | 191.7 MiB |  00m10s
+#6 34.88 Importing OpenPGP key 0x9A296436:
+#6 34.88  UserID     : "isv:kubernetes OBS Project <isv:kubernetes@build.opensuse.org>"
+#6 34.88  Fingerprint: DE15B14486CD377B9E876E1A234654DA9A296436
+#6 34.88  From       : https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key
+#6 34.91 The key was successfully imported.
+#6 44.11 [  1/135] Verify package files          100% |  36.0   B/s | 133.0   B |  00m04s
+#6 44.74 [  2/135] Prepare transaction           100% | 162.0   B/s | 133.0   B |  00m01s
+#6 44.76 [  3/135] Installing lmdb-libs-0:0.9.34 100% |   5.8 MiB/s | 107.4 KiB |  00m00s
+#6 44.81 [  4/135] Installing less-0:692-6.fc43. 100% |  12.8 MiB/s | 458.9 KiB |  00m00s
+#6 44.82 [  5/135] Installing oniguruma-0:6.9.10 100% |  41.5 MiB/s | 765.2 KiB |  00m00s
+#6 44.84 [  6/135] Installing liblastlog2-0:2.41 100% |   1.7 MiB/s |  36.0 KiB |  00m00s
+#6 44.86 [  7/135] Installing libfdisk-0:2.41.4- 100% |  26.6 MiB/s | 381.4 KiB |  00m00s
+#6 45.05 [  8/135] Installing util-linux-0:2.41. 100% |  18.7 MiB/s |   3.6 MiB |  00m00s
+#6 45.07 [  9/135] Installing openssh-0:10.0p1-9 100% |  44.9 MiB/s |   1.4 MiB |  00m00s
+#6 45.10 [ 10/135] Installing python3-ply-0:3.11 100% |  39.7 MiB/s | 569.8 KiB |  00m00s
+#6 45.12 [ 11/135] Installing python3-pycparser- 100% |  83.6 MiB/s |   1.5 MiB |  00m00s
+#6 45.18 [ 12/135] Installing python3-cffi-0:2.0 100% |  59.5 MiB/s |   1.4 MiB |  00m00s
+#6 45.24 [ 13/135] Installing python3-cryptograp 100% |  59.3 MiB/s |   5.6 MiB |  00m00s
+#6 45.28 [ 14/135] Installing python3-argcomplet 100% |   6.8 MiB/s | 339.1 KiB |  00m00s
+#6 45.30 [ 15/135] Installing libmaxminddb-0:1.1 100% |   3.7 MiB/s |  91.0 KiB |  00m00s
+#6 45.31 [ 16/135] Installing libedit-0:3.1-58.2 100% |  23.6 MiB/s | 242.0 KiB |  00m00s
+#6 45.34 [ 17/135] Installing xxd-2:9.2.530-1.fc 100% |   1.3 MiB/s |  34.3 KiB |  00m00s
+#6 45.40 [ 18/135] Installing vim-filesystem-2:9 100% | 193.8 KiB/s |   4.8 KiB |  00m00s
+#6 45.80 [ 19/135] Installing vim-common-2:9.2.5 100% |  89.3 MiB/s |  38.9 MiB |  00m00s
+#6 45.81 [ 20/135] Installing libsodium-0:1.0.22 100% |  36.0 MiB/s | 478.7 KiB |  00m00s
+#6 45.87 [ 21/135] Installing libnl3-0:3.12.0-2. 100% |  31.7 MiB/s |   1.0 MiB |  00m00s
+#6 45.88 [ 22/135] Installing libibverbs-0:58.0- 100% |  32.6 MiB/s |   1.2 MiB |  00m00s
+#6 45.91 [ 23/135] Installing libpcap-14:1.10.6- 100% |  21.8 MiB/s | 423.2 KiB |  00m00s
+#6 46.01 [ 24/135] Installing groff-base-0:1.23. 100% |  38.5 MiB/s |   3.8 MiB |  00m00s
+#6 46.07 [ 25/135] Installing hicolor-icon-theme 100% |   2.6 MiB/s | 179.7 KiB |  00m00s
+#6 46.10 [ 26/135] Installing python3-markupsafe 100% |   5.8 MiB/s |  65.8 KiB |  00m00s
+#6 46.11 [ 27/135] Installing python3-jinja2-0:3 100% | 118.9 MiB/s |   3.1 MiB |  00m00s
+#6 46.12 [ 28/135] Installing python3-resolvelib 100% |   5.4 MiB/s | 100.1 KiB |  00m00s
+#6 46.16 [ 29/135] Installing python3-pyyaml-0:6 100% |  34.3 MiB/s | 807.4 KiB |  00m00s
+#6 46.22 [ 30/135] Installing python3-packaging- 100% |  18.9 MiB/s | 619.9 KiB |  00m00s
+#6 46.60 [ 31/135] Installing ansible-core-0:2.1 100% |  35.2 MiB/s |  14.8 MiB |  00m00s
+#6 46.65 [ 32/135] Installing lksctp-tools-0:1.0 100% |   5.5 MiB/s | 255.3 KiB |  00m00s
+#6 46.68 [ 33/135] Installing libuv-1:1.51.0-2.f 100% |  31.1 MiB/s | 573.0 KiB |  00m00s
+#6 46.73 [ 34/135] Installing fstrm-0:0.6.1-13.f 100% |   1.3 MiB/s |  52.0 KiB |  00m00s
+#6 46.75 [ 35/135] Installing bind-libs-32:9.18. 100% |  73.4 MiB/s |   3.6 MiB |  00m00s
+#6 46.79 [ 36/135] Installing which-0:2.23-3.fc4 100% |   2.5 MiB/s |  85.7 KiB |  00m00s
+#6 46.89 [ 37/135] Installing gpm-libs-0:1.20.7- 100% | 311.9 KiB/s |  32.4 KiB |  00m00s
+#6 46.92 [ 38/135] Installing libcbor-0:0.12.0-6 100% |   3.0 MiB/s |  79.2 KiB |  00m00s
+#6 46.99 [ 39/135] Installing libfido2-0:1.16.0- 100% |   9.4 MiB/s | 240.0 KiB |  00m00s
+#6 47.04 [ 40/135] Installing openssh-clients-0: 100% |  25.6 MiB/s |   2.6 MiB |  00m00s
+#6 47.25 [ 41/135] Installing git-core-0:2.54.0- 100% | 118.4 MiB/s |  24.6 MiB |  00m00s
+#6 47.35 [ 42/135] Installing git-core-doc-0:2.5 100% | 370.5 MiB/s |  18.9 MiB |  00m00s
+#6 47.62 [ 43/135] Installing libicu-0:77.1-1.fc 100% | 114.4 MiB/s |  36.4 MiB |  00m00s
+#6 47.66 [ 44/135] Installing hwloc-libs-0:2.12. 100% |  80.1 MiB/s |   2.9 MiB |  00m00s
+#6 47.73 [ 45/135] Installing jansson-0:2.14-3.f 100% |   5.5 MiB/s |  90.5 KiB |  00m00s
+#6 47.78 [ 46/135] Installing ncurses-0:6.5-7.20 100% |   6.1 MiB/s | 616.4 KiB |  00m00s
+#6 47.79 [ 47/135] Installing perl-Digest-0:1.20 100% |   2.1 MiB/s |  37.1 KiB |  00m00s
+#6 47.82 [ 48/135] Installing perl-FileHandle-0: 100% | 426.0 KiB/s |   9.8 KiB |  00m00s
+#6 47.85 [ 49/135] Installing perl-B-0:1.89-523. 100% |  17.0 MiB/s | 504.7 KiB |  00m00s
+#6 47.87 [ 50/135] Installing perl-Digest-MD5-0: 100% |   3.3 MiB/s |  61.6 KiB |  00m00s
+#6 47.89 [ 51/135] Installing perl-libnet-0:3.15 100% |  13.1 MiB/s | 294.7 KiB |  00m00s
+#6 47.91 [ 52/135] Installing perl-Data-Dumper-0 100% |   6.4 MiB/s | 117.5 KiB |  00m00s
+#6 47.94 [ 53/135] Installing perl-MIME-Base32-0 100% |   1.4 MiB/s |  32.2 KiB |  00m00s
+#6 47.96 [ 54/135] Installing perl-URI-0:5.34-2. 100% |   7.6 MiB/s | 281.8 KiB |  00m00s
+#6 47.98 [ 55/135] Installing perl-IO-Socket-IP- 100% |   6.7 MiB/s | 102.2 KiB |  00m00s
+#6 48.00 [ 56/135] Installing perl-AutoLoader-0: 100% |   1.2 MiB/s |  21.0 KiB |  00m00s
+#6 48.02 [ 57/135] Installing perl-IO-Socket-SSL 100% |  39.0 MiB/s | 718.6 KiB |  00m00s
+#6 48.04 [ 58/135] Installing perl-locale-0:1.13 100% | 467.4 KiB/s |   6.5 KiB |  00m00s
+#6 48.07 [ 59/135] Installing perl-Net-SSLeay-0: 100% |  35.8 MiB/s |   1.4 MiB |  00m00s
+#6 48.09 [ 60/135] Installing perl-Time-Local-2: 100% |   4.3 MiB/s |  70.6 KiB |  00m00s
+#6 48.11 [ 61/135] Installing perl-Time-HiRes-4: 100% |   5.5 MiB/s | 117.8 KiB |  00m00s
+#6 48.12 [ 62/135] Installing perl-if-0:0.61.000 100% | 416.1 KiB/s |   6.2 KiB |  00m00s
+#6 48.14 [ 63/135] Installing perl-Pod-Escapes-1 100% |   1.8 MiB/s |  25.9 KiB |  00m00s
+#6 48.16 [ 64/135] Installing perl-File-Path-0:2 100% |   2.3 MiB/s |  64.5 KiB |  00m00s
+#6 48.18 [ 65/135] Installing perl-Text-Tabs+Wra 100% |   1.7 MiB/s |  23.9 KiB |  00m00s
+#6 48.20 [ 66/135] Installing perl-Term-Cap-0:1. 100% |   1.8 MiB/s |  30.6 KiB |  00m00s
+#6 48.21 [ 67/135] Installing perl-HTTP-Tiny-0:0 100% |  10.4 MiB/s | 160.3 KiB |  00m00s
+#6 48.23 [ 68/135] Installing perl-Class-Struct- 100% |   1.5 MiB/s |  25.9 KiB |  00m00s
+#6 48.25 [ 69/135] Installing perl-IPC-Open3-0:1 100% |   1.9 MiB/s |  28.5 KiB |  00m00s
+#6 48.28 [ 70/135] Installing perl-File-Temp-1:0 100% |   8.9 MiB/s | 164.1 KiB |  00m00s
+#6 48.39 [ 71/135] Installing perl-POSIX-0:2.23- 100% |   1.8 MiB/s | 230.8 KiB |  00m00s
+#6 48.43 [ 72/135] Installing perl-Pod-Simple-1: 100% |  16.0 MiB/s | 574.9 KiB |  00m00s
+#6 48.45 [ 73/135] Installing perl-Term-ANSIColo 100% |   6.1 MiB/s |  99.2 KiB |  00m00s
+#6 48.49 [ 74/135] Installing perl-podlators-1:6 100% |   6.8 MiB/s | 321.4 KiB |  00m00s
+#6 48.52 [ 75/135] Installing perl-Pod-Perldoc-0 100% |   5.3 MiB/s | 169.2 KiB |  00m00s
+#6 48.54 [ 76/135] Installing perl-File-stat-0:1 100% | 818.1 KiB/s |  13.1 KiB |  00m00s
+#6 48.55 [ 77/135] Installing perl-SelectSaver-0 100% | 201.0 KiB/s |   2.6 KiB |  00m00s
+#6 48.57 [ 78/135] Installing perl-Symbol-0:1.09 100% | 483.6 KiB/s |   7.3 KiB |  00m00s
+#6 48.59 [ 79/135] Installing perl-Socket-4:2.04 100% |   7.0 MiB/s | 122.3 KiB |  00m00s
+#6 48.62 [ 80/135] Installing perl-Pod-Usage-4:2 100% |   2.5 MiB/s |  87.9 KiB |  00m00s
+#6 48.67 [ 81/135] Installing perl-IO-0:1.55-523 100% |   3.2 MiB/s | 151.7 KiB |  00m00s
+#6 48.69 [ 82/135] Installing perl-overloading-0 100% | 309.5 KiB/s |   5.6 KiB |  00m00s
+#6 48.71 [ 83/135] Installing perl-mro-0:1.29-52 100% |   2.1 MiB/s |  42.7 KiB |  00m00s
+#6 48.72 [ 84/135] Installing perl-base-0:2.27-5 100% | 811.5 KiB/s |  13.0 KiB |  00m00s
+#6 48.74 [ 85/135] Installing perl-Fcntl-0:1.20- 100% |   3.5 MiB/s |  49.9 KiB |  00m00s
+#6 48.76 [ 86/135] Installing perl-Text-ParseWor 100% | 857.8 KiB/s |  14.6 KiB |  00m00s
+#6 48.77 [ 87/135] Installing perl-Getopt-Long-1 100% |  10.3 MiB/s | 147.2 KiB |  00m00s
+#6 48.79 [ 88/135] Installing perl-Storable-1:3. 100% |  15.2 MiB/s | 232.8 KiB |  00m00s
+#6 48.82 [ 89/135] Installing perl-overload-0:1. 100% |   2.4 MiB/s |  72.0 KiB |  00m00s
+#6 48.84 [ 90/135] Installing perl-Getopt-Std-0: 100% | 619.0 KiB/s |  11.8 KiB |  00m00s
+#6 48.85 [ 91/135] Installing perl-vars-0:1.05-5 100% | 330.5 KiB/s |   4.3 KiB |  00m00s
+#6 48.87 [ 92/135] Installing perl-MIME-Base64-0 100% |   2.2 MiB/s |  44.3 KiB |  00m00s
+#6 48.89 [ 93/135] Installing perl-Errno-0:1.38- 100% | 548.3 KiB/s |   8.8 KiB |  00m00s
+#6 48.90 [ 94/135] Installing perl-File-Basename 100% | 858.5 KiB/s |  14.6 KiB |  00m00s
+#6 48.92 [ 95/135] Installing perl-parent-1:0.24 100% | 783.5 KiB/s |  11.0 KiB |  00m00s
+#6 48.94 [ 96/135] Installing perl-Scalar-List-U 100% |   7.3 MiB/s | 148.7 KiB |  00m00s
+#6 48.99 [ 97/135] Installing perl-constant-0:1. 100% |   1.7 MiB/s |  27.4 KiB |  00m00s
+#6 49.03 [ 98/135] Installing perl-Encode-4:3.21 100% |  61.0 MiB/s |   4.7 MiB |  00m00s
+#6 49.05 [ 99/135] Installing perl-DynaLoader-0: 100% |   2.4 MiB/s |  32.5 KiB |  00m00s
+#6 49.20 [100/135] Installing perl-PathTools-0:3 100% |   1.2 MiB/s | 184.6 KiB |  00m00s
+#6 49.23 [101/135] Installing perl-Carp-0:1.54-5 100% |   1.3 MiB/s |  47.7 KiB |  00m00s
+#6 49.30 [102/135] Installing perl-Exporter-0:5. 100% |   2.9 MiB/s |  55.6 KiB |  00m00s
+#6 49.51 [103/135] Installing perl-libs-4:5.42.2 100% |  45.7 MiB/s |  11.6 MiB |  00m00s
+#6 49.58 [104/135] Installing perl-interpreter-4 100% |   2.0 MiB/s | 120.5 KiB |  00m00s
+#6 49.60 [105/135] Installing perl-TermReadKey-0 100% |   2.2 MiB/s |  66.2 KiB |  00m00s
+#6 49.61 [106/135] Installing perl-Error-1:0.170 100% |   5.6 MiB/s |  80.0 KiB |  00m00s
+#6 49.63 [107/135] Installing perl-lib-0:0.65-52 100% | 525.7 KiB/s |   8.9 KiB |  00m00s
+#6 49.65 [108/135] Installing git-0:2.54.0-1.fc4 100% |   3.6 MiB/s |  59.0 KiB |  00m00s
+#6 49.71 [109/135] Installing perl-Git-0:2.54.0- 100% |   3.5 MiB/s |  65.4 KiB |  00m00s
+#6 50.28 [110/135] Installing terraform-0:1.15.5 100% | 180.4 MiB/s | 111.7 MiB |  00m01s
+#6 50.31 [111/135] Installing perl-NDBM_File-0:1 100% |   1.3 MiB/s |  29.5 KiB |  00m00s
+#6 50.35 [112/135] Installing mtr-2:0.95-13.fc43 100% |   3.8 MiB/s | 187.8 KiB |  00m00s
+#6 50.46 [113/135] Installing htop-0:3.4.1-2.fc4 100% |  12.8 MiB/s | 458.4 KiB |  00m00s
+#6 51.46 [114/135] Installing powershell-0:7.6.2 100% | 180.7 MiB/s | 188.5 MiB |  00m01s
+#6 51.49 [115/135] Installing vim-enhanced-2:9.2 100% |  77.1 MiB/s |   4.3 MiB |  00m00s
+#6 51.53 [116/135] Installing bind-utils-32:9.18 100% |  17.7 MiB/s | 671.0 KiB |  00m00s
+#6 51.79 [117/135] Installing iperf3-0:3.19.1-1. 100% |   1.1 MiB/s | 303.6 KiB |  00m00s
+#6 62.32 [118/135] Installing ansible-0:11.13.0- 100% |  37.4 MiB/s | 393.8 MiB |  00m11s
+#6 62.37 [119/135] Installing btop-0:1.4.7-1.fc4 100% |  42.3 MiB/s |   1.7 MiB |  00m00s
+#6 62.41 [120/135] Installing nmap-ncat-4:7.92-6 100% |  12.4 MiB/s | 469.7 KiB |  00m00s
+#6 62.43 [121/135] Installing jq-0:1.8.1-3.fc43. 100% |  16.2 MiB/s | 464.1 KiB |  00m00s
+#6 62.50 [122/135] Installing bat-0:0.26.1-1.fc4 100% |  87.9 MiB/s |   5.9 MiB |  00m00s
+#6 62.53 [123/135] Installing less-color-0:692-6 100% | 118.4 KiB/s |   2.6 KiB |  00m00s
+#6 62.55 [124/135] Installing python3-html2text- 100% |  10.4 MiB/s | 297.5 KiB |  00m00s
+#6 62.61 [125/135] Installing 7zip-0:25.01-1.fc4 100% |  79.5 MiB/s |   3.3 MiB |  00m00s
+#6 62.65 [126/135] Installing rocm-smi-0:6.4.3-1 100% |  64.7 MiB/s |   2.7 MiB |  00m00s
+#6 62.75 [127/135] Installing python3-libdnf5-0: 100% | 146.6 MiB/s |   9.2 MiB |  00m00s
+#6 63.80 [128/135] Installing kubectl-0:1.35.5-1 100% |  50.7 MiB/s |  55.9 MiB |  00m01s
+#6 63.89 [129/135] Installing eza-0:0.23.4-3.fc4 100% |  33.9 MiB/s |   2.2 MiB |  00m00s
+#6 63.92 [130/135] Installing fzf-0:0.73.1-1.fc4 100% |  84.5 MiB/s |   5.0 MiB |  00m00s
+#6 64.43 [131/135] Installing helm-0:3.19.0-1.fc 100% | 155.8 MiB/s |  76.3 MiB |  00m00s
+#6 64.53 [132/135] Installing yq-0:4.47.1-2.fc43 100% | 106.4 MiB/s |  11.3 MiB |  00m00s
+#6 64.56 [133/135] Installing busybox-1:1.37.0-3 100% |  40.9 MiB/s |   1.4 MiB |  00m00s
+#6 64.63 [134/135] Installing iputils-0:20250605 100% |  11.2 MiB/s | 835.2 KiB |  00m00s
+#6 77.23 [135/135] Installing unzip-0:6.0-67.fc4 100% |  30.9 KiB/s | 389.8 KiB |  00m13s
+#6 77.23 Warning: skipped OpenPGP checks for 1 package from repository: @commandline
+#6 77.23 Complete!
+#6 77.31 Removed 28 files, 24 directories (total of 171 MiB). 0 errors occurred.
+#6 ...
+
+#7 [internal] load build context
+#7 transferring context: 11.06kB done
+#7 DONE 0.1s
+
+#6 [2/6] RUN echo 'root:megabash123!' | chpasswd &&     printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo &&     dnf install -y wget dnf-plugins-core &&     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo &&     dnf copr enable -y alternateved/eza &&     dnf update -y &&     dnf install -y         ncurses curl libicu gnupg2 openssh-clients unzip git vim         iputils bind-utils busybox mtr nmap-ncat iperf3         jq yq fzf eza ansible         htop btop         terraform         kubectl         helm         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm &&     dnf clean all &&     rm -rf /var/cache/dnf &&     pwsh -Command "Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser" &&     pwsh -Command "Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force" &&     pwsh -Command "Remove-Item -Path $env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path $env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue" &&     wget -qO- https://starship.rs/install.sh | sh -s -- -y &&     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack &&     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip &&     unzip Hack.zip -d /usr/share/fonts/hack &&     rm Hack.zip
+#6 653.2 Installing module AWS.Tools.Common version 5.0.230.0
+#6 656.0 Installing module AWS.Tools.CloudWatch version 5.0.230.0
+#6 662.1 Installing module AWS.Tools.S3 version 5.0.230.0
+#6 665.6 Installing module AWS.Tools.EC2 version 5.0.230.0
+#6 668.7 Installing module AWS.Tools.SecretsManager version 5.0.230.0
+#6 671.7 Installing module AWS.Tools.IdentityManagement version 5.0.230.0
+#6 674.6 Installing module AWS.Tools.SQS version 5.0.230.0
+#6 677.6 Installing module AWS.Tools.CloudFormation version 5.0.230.0
+#6 680.7 Installing module AWS.Tools.RDS version 5.0.230.0
+#6 683.7 Installing module AWS.Tools.Lambda version 5.0.230.0
+#6 686.8 Installing module AWS.Tools.DynamoDBv2 version 5.0.230.0
+#6 ERROR: process "/bin/bash -o pipefail -c echo 'root:megabash123!' | chpasswd &&     printf \"[kubernetes]\\nname=Kubernetes\\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\\nenabled=1\\ngpgcheck=1\\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\\n\" > /etc/yum.repos.d/kubernetes.repo &&     dnf install -y wget dnf-plugins-core &&     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo &&     dnf copr enable -y alternateved/eza &&     dnf update -y &&     dnf install -y         ncurses curl libicu gnupg2 openssh-clients unzip git vim         iputils bind-utils busybox mtr nmap-ncat iperf3         jq yq fzf eza ansible         htop btop         terraform         kubectl         helm         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm &&     dnf clean all &&     rm -rf /var/cache/dnf &&     pwsh -Command \"Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser\" &&     pwsh -Command \"Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force\" &&     pwsh -Command \"Remove-Item -Path \\$env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path \\$env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue\" &&     wget -qO- https://starship.rs/install.sh | sh -s -- -y &&     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack &&     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip &&     unzip Hack.zip -d /usr/share/fonts/hack &&     rm Hack.zip" did not complete successfully: exit code: 1
+------
+ > [2/6] RUN echo 'root:megabash123!' | chpasswd &&     printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo &&     dnf install -y wget dnf-plugins-core &&     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo &&     dnf copr enable -y alternateved/eza &&     dnf update -y &&     dnf install -y         ncurses curl libicu gnupg2 openssh-clients unzip git vim         iputils bind-utils busybox mtr nmap-ncat iperf3         jq yq fzf eza ansible         htop btop         terraform         kubectl         helm         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm &&     dnf clean all &&     rm -rf /var/cache/dnf &&     pwsh -Command "Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser" &&     pwsh -Command "Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force" &&     pwsh -Command "Remove-Item -Path $env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path $env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue" &&     wget -qO- https://starship.rs/install.sh | sh -s -- -y &&     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack &&     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip &&     unzip Hack.zip -d /usr/share/fonts/hack &&     rm Hack.zip:
+656.0 Installing module AWS.Tools.CloudWatch version 5.0.230.0
+662.1 Installing module AWS.Tools.S3 version 5.0.230.0
+665.6 Installing module AWS.Tools.EC2 version 5.0.230.0
+668.7 Installing module AWS.Tools.SecretsManager version 5.0.230.0
+671.7 Installing module AWS.Tools.IdentityManagement version 5.0.230.0
+674.6 Installing module AWS.Tools.SQS version 5.0.230.0
+677.6 Installing module AWS.Tools.CloudFormation version 5.0.230.0
+680.7 Installing module AWS.Tools.RDS version 5.0.230.0
+683.7 Installing module AWS.Tools.Lambda version 5.0.230.0
+686.8 Installing module AWS.Tools.DynamoDBv2 version 5.0.230.0
+------
+Dockerfile:7
+--------------------
+   6 |     
+   7 | >>> RUN echo 'root:megabash123!' | chpasswd && \
+   8 | >>>     printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo && \
+   9 | >>>     dnf install -y wget dnf-plugins-core && \
+  10 | >>>     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo && \
+  11 | >>>     dnf copr enable -y alternateved/eza && \
+  12 | >>>     dnf update -y && \
+  13 | >>>     dnf install -y \
+  14 | >>>         ncurses curl libicu gnupg2 openssh-clients unzip git vim \
+  15 | >>>         iputils bind-utils busybox mtr nmap-ncat iperf3 \
+  16 | >>>         jq yq fzf eza ansible \
+  17 | >>>         htop btop \
+  18 | >>>         terraform \
+  19 | >>>         kubectl \
+  20 | >>>         helm \
+  21 | >>>         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm && \
+  22 | >>>     dnf clean all && \
+  23 | >>>     rm -rf /var/cache/dnf && \
+  24 | >>>     pwsh -Command "Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser" && \
+  25 | >>>     pwsh -Command "Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force" && \
+  26 | >>>     pwsh -Command "Remove-Item -Path \$env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path \$env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue" && \
+  27 | >>>     wget -qO- https://starship.rs/install.sh | sh -s -- -y && \
+  28 | >>>     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack && \
+  29 | >>>     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip && \
+  30 | >>>     unzip Hack.zip -d /usr/share/fonts/hack && \
+  31 | >>>     rm Hack.zip
+  32 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -o pipefail -c echo 'root:megabash123!' | chpasswd &&     printf \"[kubernetes]\\nname=Kubernetes\\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/\\nenabled=1\\ngpgcheck=1\\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.35/rpm/repodata/repomd.xml.key\\n\" > /etc/yum.repos.d/kubernetes.repo &&     dnf install -y wget dnf-plugins-core &&     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo &&     dnf copr enable -y alternateved/eza &&     dnf update -y &&     dnf install -y         ncurses curl libicu gnupg2 openssh-clients unzip git vim         iputils bind-utils busybox mtr nmap-ncat iperf3         jq yq fzf eza ansible         htop btop         terraform         kubectl         helm         https://github.com/PowerShell/PowerShell/releases/download/v7.6.2/powershell-7.6.2-1.rh.x86_64.rpm &&     dnf clean all &&     rm -rf /var/cache/dnf &&     pwsh -Command \"Install-Module -Name VMware.PowerCLI, Az, AWS.Tools.Installer, GoogleCloud, OCI.PSModules -Force -Scope CurrentUser\" &&     pwsh -Command \"Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force\" &&     pwsh -Command \"Remove-Item -Path \\$env:HOME/.local/share/NuGet/Scratch -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path \\$env:HOME/.nuget/packages -Recurse -Force -ErrorAction SilentlyContinue\" &&     wget -qO- https://starship.rs/install.sh | sh -s -- -y &&     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack &&     wget -q --progress=dot:mega https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip &&     unzip Hack.zip -d /usr/share/fonts/hack &&     rm Hack.zip" did not complete successfully: exit code: 1

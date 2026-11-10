@@ -6,15 +6,14 @@ ARG TARGETARCH
 USER root
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN echo 'root:megabash123!' | chpasswd && \
-    printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.37/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.37/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo && \
+RUN printf "[kubernetes]\nname=Kubernetes\nbaseurl=https://pkgs.k8s.io/core:/stable:/v1.37/rpm/\nenabled=1\ngpgcheck=1\ngpgkey=https://pkgs.k8s.io/core:/stable:/v1.37/rpm/repodata/repomd.xml.key\n" > /etc/yum.repos.d/kubernetes.repo && \
     dnf install -y wget dnf-plugins-core && \
     wget -qO /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo && \
     dnf copr enable -y alternateved/eza && \
     dnf update -y && \
     dnf install -y \
         ncurses curl libicu gnupg2 openssh-clients unzip git vim \
-        iputils bind-utils busybox mtr nmap-ncat iperf3 \
+        iputils bind-utils busybox mtr nmap-ncat iperf3 skopeo \
         jq yq fzf eza ansible \
         htop btop \
         terraform \
@@ -40,7 +39,7 @@ RUN echo 'root:megabash123!' | chpasswd && \
     rm -f /tmp/powershell.tar.gz && \
     dnf clean all && \
     rm -rf /var/cache/dnf && \
-    curl -sSLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_${LAZYGIT_ARCH}.tar.gz && tar -xzf /tmp/lazygit.tar.gz -C /usr/local/bin lazygit && rm -f /tmp/lazygit.tar.gz && \
+    curl -sSLo /tmp/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/download/v0.66.3/lazygit_0.66.3_Linux_${LAZYGIT_ARCH}.tar.gz && tar -xzf /tmp/lazygit.tar.gz -C /usr/local/bin lazygit && rm -f /tmp/lazygit.tar.gz && \
     curl -sSLo /usr/local/bin/kubectx https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx && chmod +x /usr/local/bin/kubectx && \
     curl -sSLo /usr/local/bin/kubens https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens && chmod +x /usr/local/bin/kubens && \
     curl -sSLo /tmp/k9s.tar.gz https://github.com/derailed/k9s/releases/download/v0.51.0/k9s_Linux_${TARGETARCH}.tar.gz && tar -xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s && rm -f /tmp/k9s.tar.gz && \
@@ -51,6 +50,8 @@ RUN echo 'root:megabash123!' | chpasswd && \
     curl -sSLo /usr/local/bin/cosign https://github.com/sigstore/cosign/releases/download/v3.1.4/cosign-linux-${TARGETARCH} && chmod +x /usr/local/bin/cosign && \
     curl -sSLo /usr/local/bin/sops https://github.com/getsops/sops/releases/download/v3.13.3/sops-v3.13.3.linux.${TARGETARCH} && chmod +x /usr/local/bin/sops && \
     pwsh -NoLogo -NoProfile -Command 'Install-PSResource -Name AWS.Tools.Installer, VMware.PowerCLI, Az, GoogleCloud, OCI.PSModules -Scope CurrentUser -TrustRepository -AcceptLicense -Reinstall; Import-Module AWS.Tools.Installer; Install-AWSToolsModule AWS.Tools.CloudFormation, AWS.Tools.CloudWatch, AWS.Tools.DynamoDBv2, AWS.Tools.EKS, AWS.Tools.EC2, AWS.Tools.IdentityManagement, AWS.Tools.Lambda, AWS.Tools.RDS, AWS.Tools.S3, AWS.Tools.SecretsManager, AWS.Tools.SQS, AWS.Tools.Common -Force -CleanUp' && \
+    find /root/.local/share/powershell/Modules -type d \( -name 'net45' -o -name 'net472' -o -name 'fullclr' \) -exec rm -rf {} + 2>/dev/null || true && \
+    find /root/.local/share/powershell/Modules/GoogleCloud -name '*.dll' ! -name 'Google.*' -exec rm -f {} + 2>/dev/null || true && \
     rm -rf ~/.local/share/NuGet ~/.nuget ~/.config/powershell/Telemetry && \
     wget -qO- https://starship.rs/install.sh | sh -s -- -y && \
     mkdir -p /root/.config/powershell/ /usr/share/fonts/hack && \
